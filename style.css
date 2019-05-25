@@ -1,0 +1,34 @@
+
+/*메인메뉴*/
+#container{
+    width: 1280px;
+    height: 800px;
+    background-color: #212E36;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.center{
+    display: block;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+#logo{
+    padding-top: 10%;
+
+}
+
+#howplay{
+    width: 180px;
+    height: 10%;
+    padding-top: 5%;
+
+}
+
+#start{
+    width: 180px;
+    height: 10%;
+    padding-top: 3%;
+
+}
