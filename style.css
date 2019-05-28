@@ -32,3 +32,27 @@
     padding-top: 3%;
 
 }
+
+canvas {
+    display: block;
+    border: 1px solid black;
+    border-bottom: 0;
+}
+div {
+    border: 1px solid black;
+    float: left;
+    height: 400px;
+    margin: 0;
+}
+#blockStage {
+    width: 440px;
+    border-right: 0;
+}
+#blockPlay {
+    width: 840px;
+}
+
+#block_1 {
+    height: 15%;
+    margin: 5%;
+}
