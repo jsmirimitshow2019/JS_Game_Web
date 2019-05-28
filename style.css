@@ -52,7 +52,7 @@ div {
     width: 840px;
 }
 
-#block_1 {
+.block {
     height: 15%;
     margin: 5%;
 }
