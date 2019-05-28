@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Stage2</title>
+</head>
+<body>
+
+    <img src="pic/stage/cat.PNG" id="cat" style="position:absolute; top:50px; left:10px;">
+
+
+    <form>
+        이만큼 움직여요 : <input type="text" id="meter">
+        <input type="button" onclick="gogo()" value="gogo" >
+    </form>
+
+
+    <script>
+
+    meter = 0;
+
+    function gogo(){        
+        var cat = document.getElementById("cat");
+        meter = Number(meter) +  Number(document.getElementById("meter").value);
+
+        alert(meter);
+    
+        cat.style.left= meter + "px";
+
+
+    }
+    
+    </script>
+</body>
+
+</html>
