@@ -13,7 +13,8 @@
     </style>
 </head>
 <body>
-    <img src="pic/stage/cat.PNG" id="cat" style="position:absolute; top:100px; left:0px;">
+    
+    <img src="pic/stage/cat.PNG" id="cat" style="position:absolute; top:280px; left:20px;">
 
     <form>
         오른쪽으로&nbsp;<input type="text" id="rightMt" size="5">만큼&nbsp;
@@ -27,43 +28,7 @@
         현재 위치: <div id="now"></div>
     </form>
 
-    <script>
-    meter = 0;
-    document.getElementById("now").innerHTML = 0;
+    <script type="text/javascript" src="js/stage2.js"></script>
 
-    function goRight(){
-        var cat = document.getElementById("cat");
-        var location = document.getElementById("rightMt").value;
-        var num = document.getElementById("rightNum").value;
-
-        for(var i=0; i<num; i++) {
-            meter = Number(meter) +  Number(location);
-            cat.style.left = meter + "px";
-        }
-
-        document.getElementById("now").innerHTML = meter;
-    }
-
-    function goLeft(){
-        var cat = document.getElementById("cat");
-        var location = document.getElementById("leftMt").value;
-        var num = document.getElementById("leftNum").value;
-
-        for(var i=0; i<num; i++) {
-            meter = parseInt(cat.style.left) - Number(location);
-
-            if(meter >= 0) {
-                cat.style.left = meter + "px";
-            } else {
-                alert("왼쪽 끝입니당^_^");
-                meter = 0;
-                break;
-            }
-        }   
-
-        document.getElementById("now").innerHTML = meter;
-    }
-    
-    </script>
 </body>
 </html>

@@ -1,5 +1,6 @@
 
 /*메인메뉴*/
+
 #container{
     width: 1280px;
     height: 800px;
@@ -30,7 +31,6 @@
     width: 180px;
     height: 10%;
     padding-top: 3%;
-
 }
 
 canvas {
@@ -38,16 +38,27 @@ canvas {
     border: 1px solid black;
     border-bottom: 0;
 }
+
 div {
     border: 1px solid black;
     float: left;
     height: 400px;
     margin: 0;
 }
+
+/*stage 1*/
+
+#cat {
+    position:absolute; 
+    top:280px; 
+    left:20px;
+}
+
 #blockStage {
     width: 440px;
     border-right: 0;
 }
+
 #blockPlay {
     width: 840px;
 }
@@ -55,4 +66,10 @@ div {
 .block {
     height: 15%;
     margin: 5%;
+}
+
+.playblocks{
+
+    width: 150px;
+    height: 150px;
 }
