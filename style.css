@@ -49,9 +49,11 @@ div {
 /*stage 1*/
 
 #cat {
-    position:absolute; 
+    position:absolute;
+    width: 100px;
     top:280px; 
     left:20px;
+    border: 1px solid blue;
 }
 
 #blockStage {
