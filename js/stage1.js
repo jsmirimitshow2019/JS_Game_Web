@@ -136,16 +136,22 @@ function play(){
     }
 
     // 쥐 충돌처리
-    // if((now_location >= 460 && now_location <= 580 && n ow_top == 540)){
-    //     alert("게임 오버되었습니다. 사유 : 쥐를 쫓다 도망감");
-    //     cat.style.left = '315px';
-    //     cat.style.transform = 'rotate(0 deg)';
-    //     cat.style.top = '539.5px';
+    if((now_top == 540 && now_location == 565) || (now_location >= 465 && now_location <= 440 )){
+        alert("게임 오버되었습니다. 사유 : 쥐를 쫓다 도망감");
 
-    //     now_location = 315;
-    //     now_rotation = 0;
-    //     now_top = 560;
-    // }
+        console.log("찍직");
+        console.log(now_top+"만큼 위에서 있서용");
+        console.log(now_location+"만큼 걷기");
+        console.log(now_rotation+"만큼 회전하기");
+
+        // cat.style.left = '315px';
+        // cat.style.transform = 'rotate(0 deg)';
+        // cat.style.top = '539.5px';
+
+        // now_location = 315;
+        // now_rotation = 0;
+        // now_top = 560;
+    }
 
     
     // 끌리아
