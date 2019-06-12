@@ -52,7 +52,7 @@ div {
     position:absolute;
     width: 100px;
     top:540px; 
-    left:320px;
+    left:315px;
     border: 1px solid blue;
 }
 
@@ -80,4 +80,11 @@ div {
 
 #stage1_gameMain {
     background-image: url(pic/stage/background/stage1_back.jpg);
+}
+
+#stage1_towel1{
+    position: absolute;
+    top: 560px;
+    left: 440px;
+    display: none;
 }

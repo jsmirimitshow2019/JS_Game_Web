@@ -4,7 +4,7 @@
     <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
 
     <meta charset="UTF-8">
-    <title>Stage1</title>
+    <title>테스트서버</title>
 </head>
 <body>
     <div id="play_container">
@@ -15,13 +15,17 @@
                 <img src="pic/stage/block/block_go.png" class="block one" onclick="walk()">
                 <img src="pic/stage/block/block_multiple.png" class="block two" onclick="mutiply()">
                 <img src="pic/stage/block/block_rotation.png" class="block three" onclick="rotation()">
+                <img src="pic/stage/block/item.JPG" class="block four" onclick="item()">
                 <img src="pic/stage/block/trash.PNG" class="block trash" onclick="trash()">
                 <img src="pic/stage/block/play.PNG" class="block play" onclick="play()">
         </div>
         
         <canvas id="stage1_gameMain" width="977px" height="600px"> 
+
+
         </canvas>
         
+
         
         <div id="blockPlay">
             <div class="playblocks" id="play1"></div>
@@ -31,9 +35,11 @@
             <div class="playblocks" id="play5"></div>
         </div>
 
+        <img src="pic/stage/item/towel.png" id="stage1_towel1">
+
     </div>
 
-    <script type="text/javascript" src="js/stage1.js"></script>
+    <script type="text/javascript" src="js/stage1_1.js"></script>
 
 </body>
 </html>
