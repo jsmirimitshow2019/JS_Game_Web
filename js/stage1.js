@@ -10,7 +10,7 @@ var walk_v = 0; // 걷기 값
 var rotate_v = 0; // 회전 값
 
 var now_location = 315; // 현재 위치
-var now_top = 560;
+var now_top = 530;
 var now_rotation = 0; // 현재 회전
 
 var itemFlag = 0; //아이템 사용 유무(아이템 여러게 되면 배열로 쓰면 될 듯)
@@ -106,22 +106,18 @@ function play(){
     // 고양이 움직이기
     switch((now_rotation/90)%4) {
     case 1:
-    console.log(now_rotation);
-        now_location += walk_v;
-        cat.style.top = now_location + "px";
+        now_top += (walk_v-25);
+        cat.style.top = now_top + "px";
         break;
     case 2:
-    console.log(now_rotation);
         now_location -= walk_v;
         cat.style.left = now_location + "px";
         break;
     case 3:
-    console.log(now_rotation);
-        now_location -= walk_v;
-        cat.style.top = now_location + "px";
+        now_top -= (walk_v-25);
+        cat.style.top = now_top + "px";
         break;
     case 0:
-    console.log(now_rotation);
         now_location += walk_v;
         cat.style.left = now_location + "px";
         break;

@@ -51,9 +51,8 @@ div {
 #cat {
     position:absolute;
     width: 100px;
-    top:540px; 
+    top:530px; 
     left:315px;
-    border: 1px solid blue;
 }
 
 #blockStage {
@@ -65,17 +64,43 @@ div {
 #blockPlay {
     width: 1279px;
     height: 198px;
+    
 }
 
 .block {
     height: 15%;
     margin: 5%;
+    margin-left: 35px;
+    margin-top:35px;
+}
+
+#trash{
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    top : 720px;
+    left : 1185px;
+
+}
+
+#play{
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    top : 625px;
+    left : 1180px;
+
+}
+
+#play1{
+    margin-left: 70px;
 }
 
 .playblocks{
-
+    margin-top: 20px;
     width: 150px;
     height: 150px;
+    
 }
 
 #stage1_gameMain {
