@@ -10,7 +10,7 @@ var walk_v = 0; // 걷기 값
 var rotate_v = 0; // 회전 값
 
 var now_location = 315; // 현재 위치
-var now_top = 530;
+var now_top = 540;
 var now_rotation = 0; // 현재 회전
 
 var itemFlag = 0; //아이템 사용 유무(아이템 여러게 되면 배열로 쓰면 될 듯)
@@ -93,12 +93,8 @@ function play(){
     now_rotation += rotate_v;
 
 
-
-
-
-
-
     // 확인용
+    console.log(now_top+"만큼 위에서 있서용");
     console.log(now_location+"만큼 걷기");
     console.log(now_rotation+"만큼 회전하기");
 
@@ -124,7 +120,7 @@ function play(){
     }
 
     // 수건1 충돌처리
-    if(now_location >= 440 && now_top == 560 && itemFlag == 0){
+    if(now_location >= 440 && now_top == 540 && itemFlag == 0){
         alert("게임 오버되었습니다. 사유 : 물에서 미끄러짐");
         cat.style.left = '315px';
         cat.style.transform = 'rotate(0 deg)';
@@ -135,22 +131,32 @@ function play(){
         now_top = 560;
 
     }
-    else if(now_location >= 315 && now_top == 560 && itemFlag == 1){
+    else if(now_location >= 315 && now_top == 540 && itemFlag == 1){
         document.getElementById("stage1_towel1").style.display="block"; 
     }
 
+    // 쥐 충돌처리
+    // if((now_location >= 460 && now_location <= 580 && n ow_top == 540)){
+    //     alert("게임 오버되었습니다. 사유 : 쥐를 쫓다 도망감");
+    //     cat.style.left = '315px';
+    //     cat.style.transform = 'rotate(0 deg)';
+    //     cat.style.top = '539.5px';
+
+    //     now_location = 315;
+    //     now_rotation = 0;
+    //     now_top = 560;
+    // }
+
     
     // 끌리아
-    if(now_location == 900 && now_top == 560 && itemFlag == 0){
+    if(now_location >= 900 && now_top <= 300){
         alert("끌리아!");
         now_location -= walk_v;
         now_rotation -= rotate_v;
     }
 
 
-    // 고양이 움직이기
-    // cat.style.left = now_location + "px";
-     cat.style.transform = 'rotate('+now_rotation+'deg)';
+    cat.style.transform = 'rotate('+now_rotation+'deg)';
     
     walk_v -= walk_v;
     rotate_v -= rotate_v;
