@@ -125,6 +125,7 @@ function play(){
             cat.style.top = now_top + "px";
             break;
         case 0:
+            document.getElementById("cat").src="pic/stage/cat/cat1_side.png";
             now_location += walk_v;
             if(now_location > 980) {
                 alert("범위를 벗어났습니다!");
@@ -210,6 +211,8 @@ function play(){
     // 끌리아
     if(now_location == 940 && now_top == 250){
         alert("클리어!");
+        document.getElementById("cat").src="pic/stage/cat/cat1_back.png";
+
         now_location -= walk_v;
         now_rotation -= rotate_v;
     }
