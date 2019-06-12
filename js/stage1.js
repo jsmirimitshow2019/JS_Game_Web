@@ -9,7 +9,7 @@ var num = 1;
 var walk_v = 0; // 걷기 값
 var rotate_v = 0; // 회전 값
 
-var now_location = 0; // 현재 위치
+var now_location = 540; // 현재 위치
 var now_rotation = 0; // 현재 회전
 
 var itemFlag = 0; //아이템 사용 유무(아이템 여러게 되면 배열로 쓰면 될 듯)
@@ -93,29 +93,29 @@ function play(){
     let cat = document.getElementById("cat");
 
     // 누적하기
-    now_location += walk_v;
+    now_location -= walk_v;
     now_rotation += rotate_v;
 
     // 위치 검사(장애물 위치와 겹치면 게임 오버)
-    if(now_location+100 > 200 && itemFlag == 0) {
-        alert("게임 오버되었습니다.");
-        now_location -= walk_v;
-        now_rotation -= rotate_v;
-        location.reload();
-    } else if(itemFlag == 1) {
-        img.src = "pic/stage/item/towel.jpg";
-        img.onload = function(e) {
-            ctx.drawImage(img, 200, 300, 50, 70);
-        }
-        itemFlag = 2;
-    }
+    // if(now_location+100 > 200 && itemFlag == 0) {
+    //     alert("게임 오버되었습니다.");
+    //     now_location -= walk_v;
+    //     now_rotation -= rotate_v;
+    //     location.reload();
+    // } else if(itemFlag == 1) {
+    //     img.src = "pic/stage/item/towel.jpg";
+    //     img.onload = function(e) {
+    //         ctx.drawImage(img, 200, 300, 50, 70);
+    //     }
+    //     itemFlag = 2;
+    // }
 
     // 확인용
     console.log(now_location+"만큼 걷기");
     console.log(now_rotation+"만큼 회전하기");
 
     // 고양이 움직이기
-    cat.style.left = now_location + "px";
+    cat.style.top = now_location + "px";
     cat.style.transform = 'rotate('+now_rotation+'deg)';
     
     walk_v -= walk_v;

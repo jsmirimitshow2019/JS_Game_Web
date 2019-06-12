@@ -7,6 +7,7 @@
     background-color: #212E36;
     margin-top: auto;
     margin-bottom: auto;
+    background-image: url(pic/index/gamebackground.jpg)
 }
 
 .center{
@@ -15,22 +16,16 @@
     margin-right:auto;
 }
 
-#logo{
-    padding-top: 10%;
 
-}
 
 #howplay{
-    width: 180px;
-    height: 10%;
-    padding-top: 5%;
-
+    padding-left: 62%;
+    padding-top: 38.5%;
 }
 
 #start{
-    width: 180px;
-    height: 10%;
-    padding-top: 3%;
+    padding-left: 62%;
+    padding-top: 1%;
 }
 
 canvas {
@@ -48,21 +43,28 @@ div {
 
 /*stage 1*/
 
+#play_container{
+    width: 1280px;
+    height: 800px;
+}
+
 #cat {
     position:absolute;
     width: 100px;
-    top:280px; 
-    left:20px;
+    top:540px; 
+    left:320px;
     border: 1px solid blue;
 }
 
 #blockStage {
-    width: 440px;
+    width: 300px;
+    height: 600px;
     border-right: 0;
 }
 
 #blockPlay {
-    width: 840px;
+    width: 1279px;
+    height: 198px;
 }
 
 .block {
@@ -74,4 +76,8 @@ div {
 
     width: 150px;
     height: 150px;
+}
+
+#stage1_gameMain {
+    background-image: url(pic/stage/background/stage1_back.jpg);
 }
