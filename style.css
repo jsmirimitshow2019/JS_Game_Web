@@ -113,3 +113,10 @@ div {
     left: 440px;
     display: none;
 }
+
+#stage1_towel2{
+    position: absolute;
+    top: 320px;
+    left: 790px;
+    display: none;
+}

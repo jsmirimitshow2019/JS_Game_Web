@@ -63,7 +63,13 @@ function rotation(){
 function item() {
 
     distinction[num] = 'item';
-    itemFlag = 1;
+    
+    if(itemFlag == 2){
+        itemFlag = 3;
+    }
+    else {
+        itemFlag = 1;
+    }
 
     document.getElementById("play"+num).style.backgroundColor = "purple";
     num++;
@@ -92,36 +98,73 @@ function play(){
     // 누적하기
     now_rotation += rotate_v;
 
+    // 고양이 움직이기
+    switch((now_rotation/90)%4) {
+        case 1:
+            now_top += walk_v;
+            if(now_top > 540) {
+                alert("범위를 벗어났습니다!");
+                now_top = 495;
+            }
+            cat.style.top = now_top + "px";
+            break;
+        case 2:
+            now_location -= walk_v;
+            if(now_location < 300) {
+                alert("범위를 벗어났습니다!");
+                now_location = 315;
+            }
+            cat.style.left = now_location + "px";
+            break;
+        case 3:
+            now_top -= walk_v;
+            if(now_top < 218) {
+                alert("범위를 벗어났습니다!");
+                now_top = 250;
+            }
+            cat.style.top = now_top + "px";
+            break;
+        case 0:
+            now_location += walk_v;
+            if(now_location > 980) {
+                alert("범위를 벗어났습니다!");
+                now_location = 915;
+            }
+            cat.style.left = now_location + "px";
+            break;
+        }
 
     // 확인용
     console.log(now_top+"만큼 위에서 있서용");
     console.log(now_location+"만큼 걷기");
     console.log(now_rotation+"만큼 회전하기");
+    console.log(itemFlag+"아이템 상태");
+    
+    // 수건1 충돌처리
+    if(now_location >= 440 && now_top == 500  && itemFlag == 0){
+        alert("게임 오버되었습니다. 사유 : 물에서 미끄러짐");
+        cat.style.left = '315px';
+        cat.style.transform = 'rotate(0 deg)';
+        cat.style.top = '500px';
 
+        now_location = 315;
+        now_rotation = 0;
+        now_top = 560;
 
-    // 고양이 움직이기
-    switch((now_rotation/90)%4) {
-    case 1:
-        now_top += (walk_v);
-        cat.style.top = now_top + "px";
-        break;
-    case 2:
-        now_location -= walk_v;
-        cat.style.left = now_location + "px";
-        break;
-    case 3:
-        now_top -= (walk_v);
-        cat.style.top = now_top + "px";
-        break;
-    case 0:
-        now_location += walk_v;
-        cat.style.left = now_location + "px";
-        break;
+    }
+    else if( (now_location >= 315 && now_top == 500) && (itemFlag == 1)){
+        document.getElementById("stage1_towel1").style.display="block"; 
+        itemFlag = 2;
+    }
+    else if( (now_location >= 440 && now_top == 375) && (itemFlag == 1)){
+        document.getElementById("stage1_towel1").style.display="block"; 
+        itemFlag = 2;
     }
 
-    // 수건1 충돌처리
-    if(now_location >= 440 && now_top == 500 && itemFlag == 0){
-        alert("게임 오버되었습니다. 사유 : 물에서 미끄러짐");
+    // 쥐 충돌처리
+    if((now_top == 375 && now_location == 565)){
+        alert("게임 오버되었습니다. 사유 : 쥐를 쫓다 도망감");
+
         cat.style.left = '315px';
         cat.style.transform = 'rotate(0 deg)';
         cat.style.top = '539.5px';
@@ -129,34 +172,44 @@ function play(){
         now_location = 315;
         now_rotation = 0;
         now_top = 560;
-
-    }
-    else if(now_location >= 315 && now_top == 500 && itemFlag == 1){
-        document.getElementById("stage1_towel1").style.display="block"; 
     }
 
-    // 쥐 충돌처리
-    if((now_top == 540 && now_location == 565) || (now_location >= 465 && now_location <= 440 )){
-        alert("게임 오버되었습니다. 사유 : 쥐를 쫓다 도망감");
+    // 맨홀 충돌처리
+    if((now_top == 250 && now_location == 440)){
+        alert("게임 오버되었습니다. 사유 : 맨홀 구멍에 빠짐");
 
-        console.log("찍직");
-        console.log(now_top+"만큼 위에서 있서용");
-        console.log(now_location+"만큼 걷기");
-        console.log(now_rotation+"만큼 회전하기");
+        cat.style.left = '315px';
+        cat.style.transform = 'rotate(0 deg)';
+        cat.style.top = '539.5px';
 
-        // cat.style.left = '315px';
-        // cat.style.transform = 'rotate(0 deg)';
-        // cat.style.top = '539.5px';
+        now_location = 315;
+        now_rotation = 0;
+        now_top = 560;
+    }
 
-        // now_location = 315;
-        // now_rotation = 0;
-        // now_top = 560;
+    
+    // 수건2 충돌처리
+    if(now_location == 815 && now_top == 250  && itemFlag == 2){
+        alert("게임 오버되었습니다. 사유 : 물에서 미끄러짐");
+        cat.style.left = '315px';
+        cat.style.transform = 'rotate(0 deg)';
+        cat.style.top = '500px';
+
+        now_location = 315;
+        now_rotation = 0;
+        now_top = 560;
+    }
+    else if( (now_location == 815 && now_top == 375) && (itemFlag == 3)){
+        document.getElementById("stage1_towel2").style.display="block"; 
+    }
+    else if( (now_location == 690 && now_top == 250) && (itemFlag == 3)){
+        document.getElementById("stage1_towel2").style.display="block"; 
     }
 
     
     // 끌리아
-    if(now_location >= 900 && now_top <= 300){
-        alert("끌리아!");
+    if(now_location == 940 && now_top == 250){
+        alert("클리어!");
         now_location -= walk_v;
         now_rotation -= rotate_v;
     }
