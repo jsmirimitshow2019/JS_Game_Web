@@ -17,7 +17,7 @@ var itemFlag = 0; //아이템 사용 유무(아이템 여러게 되면 배열로
 var distinction = [0,]; // 구별할 수 있는 배열
 
 function init() {
-    canvas = document.getElementById("gameMain");
+    canvas = document.getElementById("stage1_gameMain");
     ctx = canvas.getContext("2d");
     img = new Image();
     img.src = "pic/stage/obstacle/water.png";
@@ -55,7 +55,7 @@ function mutiply(){
 // '회전' 블록 -> 파란색
 function rotation(){
 
-    distinction[num] = 'rotate'; 
+    distinction[num] = 'rotate';
     rotate_v += 90; // 90도 돌기 (기본값)
 
     document.getElementById("play"+num).style.backgroundColor = "blue";
@@ -93,7 +93,6 @@ function play(){
     let cat = document.getElementById("cat");
 
     // 누적하기
-    now_location -= walk_v;
     now_rotation += rotate_v;
 
     // 위치 검사(장애물 위치와 겹치면 게임 오버)
@@ -114,8 +113,31 @@ function play(){
     console.log(now_location+"만큼 걷기");
     console.log(now_rotation+"만큼 회전하기");
 
+     // 고양이 움직이기
+     switch((now_rotation/90)%4) {
+        case 1:
+        console.log(now_rotation);
+            now_location += walk_v;
+            cat.style.top = now_location + "px";
+            break;
+        case 2:
+        console.log(now_rotation);
+            now_location -= walk_v;
+            cat.style.left = now_location + "px";
+            break;
+        case 3:
+        console.log(now_rotation);
+            now_location -= walk_v;
+            cat.style.top = now_location + "px";
+            break;
+        case 0:
+        console.log(now_rotation);
+            now_location += walk_v;
+            cat.style.left = now_location + "px";
+            break;
+    }
+
     // 고양이 움직이기
-    cat.style.top = now_location + "px";
     cat.style.transform = 'rotate('+now_rotation+'deg)';
     
     walk_v -= walk_v;
