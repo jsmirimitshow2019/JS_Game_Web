@@ -5,7 +5,6 @@ var ctx;
 var img;
 
 var num = 1;
-var su = 0;
 
 var walk_v = 0; // 걷기 값
 var rotate_v = 0; // 회전 값
@@ -17,26 +16,23 @@ var now_rotation = 0; // 현재 회전
 var itemFlag = 0; //아이템 사용 유무(아이템 여러게 되면 배열로 쓰면 될 듯)
 
 var distinction = [0,]; // 구별할 수 있는 배열
-var blockValue = [0,]; // 움직임이 담긴 배열
 
 var heartSu = 0;
 
 
 function init() {
-    canvas = document.getElementById("stage1_gameMain");
+    canvas = document.getElementById("stage3_gameMain");
     ctx = canvas.getContext("2d");
 }
 
 // '걷기' 블록 -> 노란색
 function walk(){
 
-    distinction[num] = 'walk';
-    blockValue[su] = 1;
+    distinction[num] = 'walk'; 
     walk_v += 125; // 10만큼 걷기 (기본값)
 
     document.getElementById("play"+num).style.backgroundColor = "yellow";
     num++;
-    su++;
 }
 
 // '곱하기' 블록 -> 초록색
@@ -49,18 +45,6 @@ function mutiply(){
     else if(distinction[num-1] === 'rotate'){
         rotate_v *= result;
     }
-
-    if(blockValue[su] == 1) {
-        for(var i=su+1; i<=result; i++) {
-            blockValue[i] = 1;
-            su++
-        }
-    } else if(blockValue[su] == 2) {
-        for(var i=su+1; i<=result; i++) {
-            blockValue[i] = 2;
-            su++;
-        }
-    }
     
     document.getElementById("play"+num).style.backgroundColor = "green";
     num++;
@@ -69,21 +53,17 @@ function mutiply(){
 // '회전' 블록 -> 파란색
 function rotation(){
 
-    distinction[num] = 'rotate';
-    blockValue[su] = 2;
+    distinction[num] = 'rotate'; 
     rotate_v += 90; // 90도 돌기 (기본값)
-
 
     document.getElementById("play"+num).style.backgroundColor = "blue";
     num++;
-    su++;
 }
 
 // '아이템' 블록 -> 보라색
 function item() {
 
     distinction[num] = 'item';
-    blockValue[su] = 3;
     
     if(itemFlag == 2){
         itemFlag = 3;
@@ -94,14 +74,12 @@ function item() {
 
     document.getElementById("play"+num).style.backgroundColor = "purple";
     num++;
-    su++;
 }
 
 // '쓰레기' 블록 -> 흰색
 function trash(){
 
     num--;
-    su--;
 
     // num이 0이 되면 .style을 읽을 때 오류가 나므로 1로 변경한다.
     if(num == 0){
@@ -110,13 +88,13 @@ function trash(){
 
     // 배열을 비워준다.
     distinction[num] = 0; 
-    blockValue[su] = 0;
 
     document.getElementById("play"+num).style.backgroundColor = "white";
 }
 
 // 플레이 버튼
 function play(){
+
     let cat = document.getElementById("cat");
 
     // 누적하기
@@ -205,7 +183,10 @@ function play(){
     // 끌리아
     if(now_location == 940 && now_top == 250){
         alert("클리어!");
-        location.href="stage_2.html";
+        document.getElementById("cat").src="pic/stage/cat/cat1_back.png";
+
+        now_location -= walk_v;
+        now_rotation -= rotate_v;
     }
 
 
@@ -216,8 +197,8 @@ function play(){
 
     for(var i=num; i>0; i--) {
         trash();
-        su++;
     }
+
 
 }
 
