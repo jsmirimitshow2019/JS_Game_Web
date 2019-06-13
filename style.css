@@ -53,6 +53,7 @@ div {
     width: 100px;
     top:500px; 
     left:315px;
+    z-index: 5;
 }
 
 #blockStage {
@@ -178,4 +179,60 @@ div {
     z-index: 3;
     top: 290px;
     left: 320px;
+}
+
+#gameOver {
+    position: absolute;
+    z-index: 2;
+}
+#goBtn {
+    position: absolute;
+    z-index: 3;
+    top: 290px;
+    left: 125px;
+}
+
+#stopBtn {
+    position: absolute;
+    z-index: 3;
+    top: 290px;
+    left: 320px;
+}
+
+#overPage {
+    position: absolute;
+    left: 10px;
+    z-index: 10;
+    visibility: hidden;
+}
+#restart {
+    position: absolute;
+    z-index: 11;
+    width: 300px;
+    top: 695px;
+    left: 485px;
+    visibility: hidden;
+}
+
+#r_clearPage {
+    position: absolute;
+    left: 10px;
+    z-index: 10;
+    visibility: hidden;
+}
+#r_goBtn {
+    position: absolute;
+    z-index: 11;
+    width: 250px;
+    top: 660px;
+    left: 320px;
+    visibility: hidden;
+}
+#r_stopBtn {
+    position: absolute;
+    z-index: 11;
+    width: 250px;
+    top: 660px;
+    left: 710px;
+    visibility: hidden;
 }

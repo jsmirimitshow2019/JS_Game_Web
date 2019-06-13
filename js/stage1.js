@@ -235,10 +235,10 @@ function play(){
         
         // 끌리아
         if(now_location == 940 && now_top == 250){
-            alert("클리어!");
-            location.href="stage_2.html";
+            document.getElementById("r_clearPage").style.visibility = "visible";
+            document.getElementById("r_goBtn").style.visibility = "visible";
+            document.getElementById("r_stopBtn").style.visibility = "visible";
         }
-
 
         cat.style.transform = 'rotate('+now_rotation+'deg)';
         
@@ -247,7 +247,7 @@ function play(){
 
         j++;
     }
-}, 800);
+}, 600);
 
     
 
@@ -259,8 +259,8 @@ function heart() {
         var hrt = document.getElementById("hrt" + heartSu);
         hrt.style.visibility = "hidden";
     } else {
-        alert("게임이 완전히 오버되었네용");
-        location.reload();
+    document.getElementById("overPage").style.visibility = "visible";
+    document.getElementById("restart").style.visibility = "visible";
     }
 }
 
@@ -297,4 +297,10 @@ function go() {
 
 function stop() {
     location.reload();
+}
+
+function restart() {
+    location.reload();
+    document.getElementById("overPage").style.visibility = "hidden";
+    document.getElementById("restart").style.visibility = "hidden";
 }
