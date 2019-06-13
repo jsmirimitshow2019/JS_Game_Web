@@ -147,13 +147,7 @@ function play(){
     // 수건1 충돌처리
     if(now_location >= 440 && now_top == 500  && itemFlag == 0){
         alert("게임 오버되었습니다. 사유 : 물에서 미끄러짐");
-        cat.style.left = '315px';
-        cat.style.transform = 'rotate(0 deg)';
-        cat.style.top = '500px';
-
-        now_location = 315;
-        now_rotation = 0;
-        now_top = 560;
+        gameover();
         heart();
 
     }
@@ -169,28 +163,14 @@ function play(){
     // 쥐 충돌처리
     if((now_top == 375 && now_location == 565)){
         alert("게임 오버되었습니다. 사유 : 쥐를 쫓다 도망감");
-
-        cat.style.left = '315px';
-        cat.style.transform = 'rotate(0 deg)';
-        cat.style.top = '539.5px';
-
-        now_location = 315;
-        now_rotation = 0;
-        now_top = 560;
+        gameover();
         heart();
     }
 
     // 맨홀 충돌처리
     if((now_top == 250 && now_location == 440)){
         alert("게임 오버되었습니다. 사유 : 맨홀 구멍에 빠짐");
-
-        cat.style.left = '315px';
-        cat.style.transform = 'rotate(0 deg)';
-        cat.style.top = '539.5px';
-
-        now_location = 315;
-        now_rotation = 0;
-        now_top = 560;
+        gameover();
         heart();
     }
 
@@ -198,13 +178,7 @@ function play(){
     // 수건2 충돌처리
     if(now_location == 815 && now_top == 250  && itemFlag == 2){
         alert("게임 오버되었습니다. 사유 : 물에서 미끄러짐");
-        cat.style.left = '315px';
-        cat.style.transform = 'rotate(0 deg)';
-        cat.style.top = '500px';
-
-        now_location = 315;
-        now_rotation = 0;
-        now_top = 560;
+        gameover();
         heart();
     }
     else if( (now_location == 815 && now_top == 375) && (itemFlag == 3)){
@@ -246,4 +220,23 @@ function heart() {
         alert("게임이 완전히 오버되었네용");
         location.reload();
     }
+}
+
+function gameover(){
+    
+    cat.style.left = '315px';
+    cat.style.transform = 'rotate(0 deg)';
+    cat.style.top = '500px';
+
+    now_location = 315;
+    now_rotation = 0;
+    now_top = 500;
+
+    document.getElementById("stage1_towel1").style.display="none"; 
+    document.getElementById("stage1_towel2").style.display="none"; 
+    document.getElementById("cat").src="pic/stage/cat/cat1_front.png";
+
+
+    itemFlag=0;
+
 }
