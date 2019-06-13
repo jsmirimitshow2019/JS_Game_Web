@@ -30,8 +30,8 @@ var thread_istrue = 0;
 
 var box_flag = 0;
 
-var fish_shop = false;
-
+var fish = false;
+var see_fish = false;
 
 function init() {
     canvas = document.getElementById("stage3_gameMain");
@@ -182,7 +182,7 @@ function play(){
             box_flag = 1;
         }
 
-        document.getElementById("cat").src="pic/stage/cat/cat1_side.png";
+        document.getElementById("cat").src="pic/stage/cat/cat3_side.png";
 
         console.log(blockValue);
 
@@ -196,7 +196,7 @@ function play(){
         switch((now_rotation/90)%4) {
             case 1:
                 now_top += walk_v;
-                if(now_top > 540) {
+                if(now_top > 530) {
                     alert("범위를 벗어났습니다!");
                     now_top = 500;
                 }
@@ -214,7 +214,7 @@ function play(){
                 now_top -= walk_v;
                 if(now_top < 0) {
                     alert("범위를 벗어났습니다!");
-                    now_top = 0;
+                    now_top = 20;
                 }
                 cat.style.top = now_top + "px";
                 break;
@@ -234,7 +234,7 @@ function play(){
         // console.log(now_rotation+"만큼 회전하기");
         // console.log(itemFlag+"아이템 상태");
         
-        // 피하지 못하는 장애물 (맨홀, 쥐, 쓰레기통) 충돌처리
+ //       피하지 못하는 장애물 (맨홀, 쥐, 쓰레기통) 충돌처리
         if(now_location == 555 && now_top == 500){
             gameover("hall");
         }
@@ -260,7 +260,7 @@ function play(){
         //아이템을 써서 피할 수 있는 장애물
         //수건1,2 / 실타래1,2 / 박스 충돌처리
 
-        
+
         if(now_top == 380 && now_location == 315  && towel_flag == 0 && towel_istrue == 0){
             gameover("water");
         }
@@ -334,13 +334,29 @@ function play(){
         }
 
         //클리어
-        if(now_location == 1155 && now_top == 20 && fish_shop==true) {
+        if(now_location == 1155 && now_top == 20 && fish==true) {
             window.location.href = 'clear.html';
+        }
+        else if(now_location == 1155 && now_top == 20 && fish==false){
+            document.getElementById("event_nogofishshop").style.display="block"; 
         }
 
         //생선가게
         if(now_location == 315 && now_top == 20) {
-            fish_shop=true;
+            document.getElementById("event_arrivefishshop").style.display="block"; 
+
+            document.getElementById("fish").style.display="block"; 
+            see_fish = true;
+
+        }
+
+        //생선찾기
+        if(now_location == 675 && now_top == 140 && see_fish == true) {
+            document.getElementById("event_findfish").style.display="block"; 
+
+            document.getElementById("fish").style.display="none"; 
+            fish = true;
+
         }
         
 
@@ -378,7 +394,7 @@ function gameover(reason){
 
     document.getElementById("stage3_towel1").style.display="none"; 
     document.getElementById("stage3_towel2").style.display="none"; 
-    document.getElementById("cat").src="pic/stage/cat/cat1_front.png";
+    document.getElementById("cat").src="pic/stage/cat/cat3_front.png";
 
     // 레이어 팝업
     document.getElementById("gameOver").src = "pic/stage/gameOver/" + reason + ".png";
@@ -410,3 +426,5 @@ function restart() {
     document.getElementById("overPage").style.visibility = "hidden";
     document.getElementById("restart").style.visibility = "hidden";
 }
+
+

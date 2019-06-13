@@ -24,7 +24,7 @@
 <body>
     <div id="play_container">
 
-        <img src="pic/stage/cat/cat1_front.png" id="cat">
+        <img src="pic/stage/cat/cat3_front.png" id="cat">
 
         <div id="blockStage">
                 <img src="pic/stage/block/block_walk.png" class="block one" onclick="walk()">
@@ -72,6 +72,14 @@
         <img src="pic/stage/item/remove_thread.png" id="stage3_thread2">
 
         <img src="pic/stage/item/close_box.png" id="stage3_box">
+
+
+        <img onclick="javascript:document.getElementById('event_lostfish').style.display='none'; " src="pic/stage/event/event_lostfish.png" class="event" id="event_lostfish">
+        <img onclick="javascript:document.getElementById('event_nogofishshop').style.display='none'; " src="pic/stage/event/event_nogofishshop.png" class="event" id="event_nogofishshop">
+        <img onclick="javascript:document.getElementById('event_arrivefishshop').style.display='none'; document.getElementById('event_lostfish').style.display='block'; " src="pic/stage/event/event_arrivefishshop.png" class="event" id="event_arrivefishshop">
+        <img onclick="javascript:document.getElementById('event_findfish').style.display='none'; " src="pic/stage/event/event_findfish.png" class="event" id="event_findfish">
+
+        <img src="pic/stage/item/fish.png" id="fish">
 
 
     </div>

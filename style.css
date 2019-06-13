@@ -299,3 +299,19 @@ div {
     left: 1049px;  
     display: none;   
 }
+
+.event{
+    position: absolute;
+    top: 340px;
+    left: 315px;   
+    display: none;   
+}
+
+#fish{
+    position: absolute;
+    width : 90px;
+    height: 90px;
+    top: 145px;
+    left: 685px;   
+    display: none;     
+}
