@@ -22,9 +22,11 @@ var blockValue = [0,]; // 움직임이 담긴 배열
 
 var heartSu = 0;
 
+var fish = false;
+
 
 function init() {
-    canvas = document.getElementById("stage1_gameMain");
+    canvas = document.getElementById("tutorial_gameMain");
     ctx = canvas.getContext("2d");
 }
 
@@ -173,7 +175,7 @@ function play(){
                 break;
             case 3:
                 now_top -= walk_v;
-                if(now_top < 218) {
+                if(now_top <= 140) {
                     alert("범위를 벗어났습니다!");
                     now_top = 260;
                 }
@@ -182,9 +184,9 @@ function play(){
             case 0:
                 
                 now_location += walk_v;
-                if(now_location > 980) {
+                if(now_location >= 675) {
                     alert("범위를 벗어났습니다!");
-                    now_location = 915;
+                    now_location = 555;
                 }
                 cat.style.left = now_location + "px";
                 break;
@@ -199,48 +201,31 @@ function play(){
         // 수건1 충돌처리
         if(now_location == 435 && now_top == 500  && itemFlag == 0){
             gameover("water");
+            document.getElementById('three').style.display='block';
         }
         else if( (now_location == 315 && now_top == 500) && (itemFlag == 1)){
             document.getElementById("stage1_towel1").style.display="block"; 
             itemFlag = 2;
+
+            document.getElementById('four').style.display='block';
         }
-        else if( (now_location >= 435 && now_top == 380) && (itemFlag == 1)){
-            document.getElementById("stage1_towel1").style.display="block"; 
-            itemFlag = 2;
-        }
+        
 
         // 쥐 충돌처리
-        if((now_top == 380 && now_location == 555)){
+        if((now_top == 500 && now_location == 555)){
             gameover("mouse");
+            document.getElementById('six').style.display='block';
         }
 
-        // 맨홀 충돌처리
-        if((now_top == 260 && now_location == 435)){
-            gameover("hall");
-        }
 
-        // 쓰레기통 충돌처리
-        if((now_top == 380 && now_location == 915)){
-            gameover("trash");
+        // 생선가게
+        if((now_top == 260 && now_location == 315)){
+            fish = true;
         }
-        
-
-        
-        // 수건2 충돌처리
-        if(now_location == 795 && now_top == 260  && itemFlag == 2){
-            gameover("water");
-        }
-        else if( (now_location == 795 && now_top == 380) && (itemFlag == 3)){
-            document.getElementById("stage1_towel2").style.display="block"; 
-        }
-        else if( (now_location == 675 && now_top == 260) && (itemFlag == 3)){
-            document.getElementById("stage1_towel2").style.display="block"; 
-        }
-
         
         // 끌리아
-        if(now_location == 915 && now_top == 260){
-            document.getElementById("r_clearPage").style.visibility = "visible";
+        if(now_location == 555 && now_top == 260 && fish){
+            document.getElementById('tu_clearPage').style.display='block';
             document.getElementById("r_goBtn").style.visibility = "visible";
             document.getElementById("r_stopBtn").style.visibility = "visible";
         }
@@ -278,7 +263,6 @@ function gameover(reason){
     now_top = 500;
 
     document.getElementById("stage1_towel1").style.display="none"; 
-    document.getElementById("stage1_towel2").style.display="none"; 
     document.getElementById("cat").src="pic/stage/cat/cat1_front.png";
 
     // 레이어 팝업
@@ -289,15 +273,25 @@ function gameover(reason){
 
     itemFlag=0;
 
+
+    for(let i=num; i>0; i--) {
+        trash();
+        su++;
+    }
+
+
     clearInterval(run);
 
 }
 
 function go() {
-    heart();
     document.getElementById("gameOver").style.visibility = "hidden";
     document.getElementById("goBtn").style.visibility = "hidden";
     document.getElementById("stopBtn").style.visibility = "hidden";
+
+
+
+
 }
 
 function stop() {

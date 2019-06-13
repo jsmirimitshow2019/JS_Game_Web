@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+
+    <link rel="shortcut icon" href="pic/favicon.ico">
+
+
+    <meta charset="UTF-8">
+    <title>Stage 1</title>
+</head>
+<body>
+    <div id="play_container">
+
+        <img src="pic/stage/cat/cat1_front.png" id="cat">
+
+        <div id="blockStage">
+                <img src="pic/stage/block/block_walk.png" class="block one" onclick="walk()">
+                <img src="pic/stage/block/block_multiple.png" class="block two" onclick="mutiply()">
+                <img src="pic/stage/block/block_rotate.png" class="block three" onclick="rotation()">
+                <img src="pic/stage/block/block_towel.png" class="block four" onclick="item()">
+        </div>
+        
+
+        <canvas id="tutorial_gameMain" width="977px" height="600px"> 
+
+        </canvas>
+
+        <div id="layerPopup">
+            <img src="pic/stage/gameOver/go.png" id="goBtn" onclick="go()">
+            <img src="pic/stage/gameOver/stop.png" id="stopBtn" onclick="stop()">
+            <img src="pic/stage/gameOver/mouse.png" id="gameOver">
+        </div>
+
+
+        
+        <div id="blockPlay">
+            <div class="playblocks" id="play1" ></div>
+            <div class="playblocks" id="play2"></div>
+            <div class="playblocks" id="play3"></div>
+            <div class="playblocks" id="play4"></div>
+            <div class="playblocks" id="play5"></div>
+
+        </div>
+
+        <img src="pic/index/youwanttutorial.jpg" id="youwanttutorial">
+        <img src="pic/index/choice/yes.png" id="yesbtn" onclick="javascript:document.getElementById('youwanttutorial').style.display='none'; 
+        document.getElementById('nobtn').style.display='none';
+        document.getElementById('yesbtn').style.display='none';
+        ">
+        <img src="pic/index/choice/no.png" id="nobtn" onclick="location.href='stage_1.html'">
+
+        <img src="pic/stage/block/trash.PNG" id="trash" onclick="trash()">
+        <img src="pic/stage/block/play.PNG" id="play" onclick="play()">
+
+        <img src="pic/stage/item/stage1_towel1.png" id="stage1_towel1">
+
+        <img src="pic/stage/gameClear/roundclear.png" id="tu_clearPage">
+        <img src="pic/stage/gameClear/go.png" id="r_goBtn" onclick="location.href='stage_1.html'">
+        <img src="pic/stage/gameClear/stop.png" id="r_stopBtn" onclick="location.href='index.html'">
+
+
+        <img onclick="javascript:document.getElementById('one').style.display='none'; document.getElementById('two').style.display='block'; " src="pic/index/tutorial/1.png" class="tu_event" id="one">
+        <img onclick="javascript:document.getElementById('two').style.display='none'; " src="pic/index/tutorial/2.png" class="tu_event" id="two">
+        <img onclick="javascript:document.getElementById('three').style.display='none'; " src="pic/index/tutorial/3.png" class="tu_event" id="three">
+        <img onclick="javascript:document.getElementById('four').style.display='none'; document.getElementById('five').style.display='block'; " src="pic/index/tutorial/4.png" class="tu_event" id="four">
+        <img onclick="javascript:document.getElementById('five').style.display='none'; " src="pic/index/tutorial/5.png" class="tu_event" id="five">
+        <img onclick="javascript:document.getElementById('six').style.display='none'; document.getElementById('seven').style.display='block'; " src="pic/index/tutorial/6.png" class="tu_event" id="six">
+        <img onclick="javascript:document.getElementById('seven').style.display='none'; document.getElementById('eight').style.display='block';" src="pic/index/tutorial/7.png" class="tu_event" id="seven">
+        <img onclick="javascript:document.getElementById('eight').style.display='none'; " src="pic/index/tutorial/8.png" class="tu_event" id="eight">
+
+    </div>
+    
+    <script type="text/javascript" src="js/tutorial.js"></script>
+
+</body>
+</html>

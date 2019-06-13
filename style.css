@@ -139,6 +139,48 @@ div {
     background-image: url(pic/stage/background/stage3_back.jpg);
 }
 
+#tutorial_gameMain {
+    background-image: url(pic/index/tutorial.jpg);
+}
+
+/*튜토리얼*/
+
+#youwanttutorial{
+    position: absolute;
+    width: 1280px;
+    height: 800px;
+    top : 10px;
+    left: 10px;
+    z-index: 5;
+}
+
+#yesbtn{
+    position: absolute;  
+    top : 450px;
+    left: 350px;   
+    z-index: 6;
+}
+
+
+#nobtn{
+    position: absolute;  
+    top : 450px;
+    left: 700px;   
+    z-index: 6;
+}
+
+.tu_event{
+    position: absolute;
+    top: 20px;
+    left: 315px;   
+    display: none;   
+}
+
+#one{
+    display: block; 
+}
+
+
 #stage1_towel1{
     position: absolute;
     top: 560px;
@@ -236,6 +278,14 @@ div {
     visibility: hidden;
 }
 
+#tu_clearPage {
+    position: absolute;
+    top : 10px;
+    left: 10px;
+    z-index: 10;
+    display: none; 
+}
+
 #r_clearPage {
     position: absolute;
     left: 10px;
@@ -315,3 +365,4 @@ div {
     left: 685px;   
     display: none;     
 }
+
