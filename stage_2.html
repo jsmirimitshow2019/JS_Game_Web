@@ -1,33 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+
     <meta charset="UTF-8">
-    <title>Stage2</title>
-    <style>
-        #now {
-            display: inline;
-        }
-        input[type="number"] {
-            width: 31px;
-        }
-    </style>
+    <title>stage2</title>
 </head>
 <body>
+    <div id="play_container">
+
+        <img src="pic/stage/cat/cat1_front.png" id="cat">
+
+        <div id="blockStage">
+                <img src="pic/stage/block/block_go.png" class="block one" onclick="walk()">
+                <img src="pic/stage/block/block_multiple.png" class="block two" onclick="mutiply()">
+                <img src="pic/stage/block/block_rotation.png" class="block three" onclick="rotation()">
+                <img src="pic/stage/block/block_towel.png" class="block four" onclick="item()">
+        </div>
+        
+        <div id="layerPopup">
+            <img src="pic/stage/gameOver/go.png" id="goBtn" onclick="go()">
+            <img src="pic/stage/gameOver/stop.png" id="stopBtn" onclick="stop()">
+            <img src="pic/stage/gameOver/mouse.png" id="gameOver">
+        </div>
+
+        <canvas id="stage2_gameMain" width="977px" height="600px"> 
+
+        </canvas>
+
+        <img src="pic/stage/heart.png" class="heart" id="hrt1">
+        <img src="pic/stage/heart.png" class="heart" id="hrt2">
+        <img src="pic/stage/heart.png" class="heart" id="hrt3">
+
+        
+        <div id="blockPlay">
+            <div class="playblocks" id="play1" ></div>
+            <div class="playblocks" id="play2"></div>
+            <div class="playblocks" id="play3"></div>
+            <div class="playblocks" id="play4"></div>
+            <div class="playblocks" id="play5"></div>
+            <div class="playblocks" id="play6"></div>
+            <div class="playblocks" id="play7"></div>
+        </div>
+
+        <img src="pic/stage/block/trash.PNG" id="trash" onclick="trash()">
+        <img src="pic/stage/block/play.PNG" id="play" onclick="play()">
+
+        <img src="pic/stage/item/stage1_towel1.png" id="stage1_towel1">
+        <img src="pic/stage/item/stage1_towel2.png" id="stage1_towel2">
+
+    </div>
     
-    <img src="pic/stage/cat.PNG" id="cat" style="position:absolute; top:280px; left:20px;">
-
-    <form>
-        오른쪽으로&nbsp;<input type="text" id="rightMt" size="5">만큼&nbsp;
-        <input type="number" min="1" max="10" value="1" id="rightNum">번&nbsp;
-        <input type="button" onclick="goRight()" value="이동하기" > <br>
-
-        왼쪽으로&nbsp;&nbsp;&nbsp; <input type="text" id="leftMt" size="5">만큼&nbsp;
-        <input type="number" min="1" max="10" value="1" id="leftNum">번&nbsp;
-        <input type="button" onclick="goLeft()" value="이동하기" > <br><br>
-
-        현재 위치: <div id="now"></div>
-    </form>
-
     <script type="text/javascript" src="js/stage2.js"></script>
 
 </body>

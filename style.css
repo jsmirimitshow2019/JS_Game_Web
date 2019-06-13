@@ -112,6 +112,10 @@ div {
     background-image: url(pic/stage/background/stage1_back.jpg);
 }
 
+#stage2_gameMain {
+    background-image: url(pic/stage/background/stage2_back.jpg);
+}
+
 #stage1_towel1{
     position: absolute;
     top: 560px;
@@ -144,4 +148,30 @@ div {
 
 #hrt1 {
     left: 406px;
+}
+
+#layerPopup {
+    position: absolute;
+    top: 150px;
+    left: 500px;
+    border: 0;
+    visibility: hidden;
+}
+
+#gameOver {
+    position: absolute;
+    z-index: 2;
+}
+#goBtn {
+    position: absolute;
+    z-index: 3;
+    top: 290px;
+    left: 125px;
+}
+
+#stopBtn {
+    position: absolute;
+    z-index: 3;
+    top: 290px;
+    left: 320px;
 }

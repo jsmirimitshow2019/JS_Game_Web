@@ -18,8 +18,13 @@
                 <img src="pic/stage/block/block_towel.png" class="block four" onclick="item()">
         </div>
         
-        <canvas id="stage1_gameMain" width="977px" height="600px"> 
+        <div id="layerPopup">
+            <img src="pic/stage/gameOver/go.png" id="goBtn" onclick="go()">
+            <img src="pic/stage/gameOver/stop.png" id="stopBtn" onclick="stop()">
+            <img src="pic/stage/gameOver/mouse.png" id="gameOver">
+        </div>
 
+        <canvas id="stage1_gameMain" width="977px" height="600px"> 
 
         </canvas>
 
@@ -45,7 +50,7 @@
         <img src="pic/stage/item/stage1_towel2.png" id="stage1_towel2">
 
     </div>
-
+    
     <script type="text/javascript" src="js/stage1.js"></script>
 
 </body>

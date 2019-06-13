@@ -20,7 +20,6 @@ var distinction = [0,]; // 구별할 수 있는 배열
 var heartSu = 0;
 
 
-
 function init() {
     canvas = document.getElementById("stage1_gameMain");
     ctx = canvas.getContext("2d");
@@ -146,9 +145,7 @@ function play(){
     
     // 수건1 충돌처리
     if(now_location >= 440 && now_top == 500  && itemFlag == 0){
-        alert("게임 오버되었습니다. 사유 : 물에서 미끄러짐");
-        gameover();
-        heart();
+        gameover("water");
 
     }
     else if( (now_location >= 315 && now_top == 500) && (itemFlag == 1)){
@@ -162,24 +159,18 @@ function play(){
 
     // 쥐 충돌처리
     if((now_top == 375 && now_location == 565)){
-        alert("게임 오버되었습니다. 사유 : 쥐를 쫓다 도망감");
-        gameover();
-        heart();
+        gameover("mouse");
     }
 
     // 맨홀 충돌처리
     if((now_top == 250 && now_location == 440)){
-        alert("게임 오버되었습니다. 사유 : 맨홀 구멍에 빠짐");
-        gameover();
-        heart();
+        gameover("hall");
     }
 
     
     // 수건2 충돌처리
     if(now_location == 815 && now_top == 250  && itemFlag == 2){
-        alert("게임 오버되었습니다. 사유 : 물에서 미끄러짐");
-        gameover();
-        heart();
+        gameover("water");
     }
     else if( (now_location == 815 && now_top == 375) && (itemFlag == 3)){
         document.getElementById("stage1_towel2").style.display="block"; 
@@ -192,10 +183,7 @@ function play(){
     // 끌리아
     if(now_location == 940 && now_top == 250){
         alert("클리어!");
-        document.getElementById("cat").src="pic/stage/cat/cat1_back.png";
-
-        now_location -= walk_v;
-        now_rotation -= rotate_v;
+        location.href="stage_2.html";
     }
 
 
@@ -222,7 +210,7 @@ function heart() {
     }
 }
 
-function gameover(){
+function gameover(reason){
     
     cat.style.left = '315px';
     cat.style.transform = 'rotate(0 deg)';
@@ -236,7 +224,23 @@ function gameover(){
     document.getElementById("stage1_towel2").style.display="none"; 
     document.getElementById("cat").src="pic/stage/cat/cat1_front.png";
 
+    // 레이어 팝업
+    document.getElementById("gameOver").src = "pic/stage/gameOver/" + reason + ".png";
+    document.getElementById("gameOver").style.visibility = "visible";
+    document.getElementById("goBtn").style.visibility = "visible";
+    document.getElementById("stopBtn").style.visibility = "visible";
 
     itemFlag=0;
 
+}
+
+function go() {
+    heart();
+    document.getElementById("gameOver").style.visibility = "hidden";
+    document.getElementById("goBtn").style.visibility = "hidden";
+    document.getElementById("stopBtn").style.visibility = "hidden";
+}
+
+function stop() {
+    location.reload();
 }
