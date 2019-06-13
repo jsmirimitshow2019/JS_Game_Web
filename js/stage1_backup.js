@@ -112,20 +112,16 @@ function trash(){
 // 플레이 버튼
 function play(){
 
-    let j =0;
- 
-    run = setInterval(function(){
-    if(j==blockValue.length){
- 
-        for(let i=num; i>0; i--) {
-            trash();
-            su++;
-        }
+    // 이게 있어야 반복문이 돌아감 ^_ㅠ
+    let for_su = su;
 
-        clearInterval(run);
- 
-    }else{
-    
+    for(let j=0; j<for_su; j++){
+
+        //same sleep
+        setTimeout(function() {
+            alert("sleep 실행");
+            }, 1000);
+
         //alert(blockValue[j]);
 
         if(blockValue[j] == 1){ // 걷기일때
@@ -245,11 +241,18 @@ function play(){
         walk_v -= walk_v;
         rotate_v -= rotate_v;
 
-        j++;
-    }
-}, 800);
+
+        //alert("반복문 실행")
+
+
+
+    } // for
 
     
+    for(let i=num; i>0; i--) {
+        trash();
+        su++;
+    }
 
 }
 
