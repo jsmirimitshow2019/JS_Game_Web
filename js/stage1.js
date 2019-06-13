@@ -93,6 +93,7 @@ function trash(){
 
 // 플레이 버튼
 function play(){
+
     let cat = document.getElementById("cat");
 
     // 누적하기
@@ -226,4 +227,6 @@ function play(){
     for(var i=num; i>0; i--) {
         trash();
     }
+
+
 }
