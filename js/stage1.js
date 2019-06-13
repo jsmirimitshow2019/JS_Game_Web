@@ -17,6 +17,8 @@ var itemFlag = 0; //아이템 사용 유무(아이템 여러게 되면 배열로
 
 var distinction = [0,]; // 구별할 수 있는 배열
 
+var heartSu = 0;
+
 
 
 function init() {
@@ -152,6 +154,7 @@ function play(){
         now_location = 315;
         now_rotation = 0;
         now_top = 560;
+        heart();
 
     }
     else if( (now_location >= 315 && now_top == 500) && (itemFlag == 1)){
@@ -174,6 +177,7 @@ function play(){
         now_location = 315;
         now_rotation = 0;
         now_top = 560;
+        heart();
     }
 
     // 맨홀 충돌처리
@@ -187,6 +191,7 @@ function play(){
         now_location = 315;
         now_rotation = 0;
         now_top = 560;
+        heart();
     }
 
     
@@ -200,6 +205,7 @@ function play(){
         now_location = 315;
         now_rotation = 0;
         now_top = 560;
+        heart();
     }
     else if( (now_location == 815 && now_top == 375) && (itemFlag == 3)){
         document.getElementById("stage1_towel2").style.display="block"; 
@@ -229,4 +235,15 @@ function play(){
     }
 
 
+}
+
+function heart() {
+    heartSu++;
+    if(heartSu<3) {
+        var hrt = document.getElementById("hrt" + heartSu);
+        hrt.style.visibility = "hidden";
+    } else {
+        alert("게임이 완전히 오버되었네용");
+        location.reload();
+    }
 }

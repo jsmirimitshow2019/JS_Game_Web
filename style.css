@@ -120,3 +120,23 @@ div {
     left: 790px;
     display: none;
 }
+
+.heart {
+    position: absolute;
+    width: 40px;
+    top: 20px;
+}
+
+
+/*하트*/
+#hrt3 {
+    left: 320px;
+}
+
+#hrt2 {
+    left: 363px;
+}
+
+#hrt1 {
+    left: 406px;
+}
