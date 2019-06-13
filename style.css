@@ -68,6 +68,7 @@ div {
     
 }
 
+
 .block {
     height: 15%;
     margin: 5%;
@@ -82,24 +83,41 @@ div {
 
 #trash{
     position: absolute;
-    width: 70px;
-    height: 70px;
+    width: 50px;
+    height: 50px;
     top : 720px;
-    left : 1185px;
+    left : 1200px;
+}
 
+#trash:hover{
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    top : 710px;
+    left : 1195px;
 }
 
 #play{
     position: absolute;
-    width: 80px;
-    height: 80px;
-    top : 625px;
-    left : 1180px;
-
+    width: 60px;
+    height: 60px;
+    top : 635px;
+    left : 1195px;
 }
 
+
+#play:hover{
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    left : 1190px;
+    top : 630px;
+}
+
+
+
 #play1{
-    margin-left: 70px;
+    margin-left: 90px;
 }
 
 .playblocks{
@@ -135,6 +153,7 @@ div {
     display: none;
 }
 
+
 .heart {
     position: absolute;
     width: 40px;
@@ -144,15 +163,18 @@ div {
 
 /*하트*/
 #hrt3 {
-    left: 320px;
+    top:740px;
+    left: 30px;
 }
 
 #hrt2 {
-    left: 363px;
+    top:690px;
+    left: 30px;
 }
 
 #hrt1 {
-    left: 406px;
+    top:640px;
+    left: 30px;
 }
 
 #layerPopup {
@@ -235,4 +257,45 @@ div {
     top: 660px;
     left: 710px;
     visibility: hidden;
+}
+
+/*스테이지3*/
+
+
+#stage3_towel1{
+    position: absolute;
+    top: 430px;
+    left: 320px;
+    display: none; 
+}
+
+#stage3_towel2{
+    position: absolute;
+    top: 320px;
+    left: 790px;
+    display: none; 
+}
+
+#stage3_thread1 {
+    position: absolute;
+    top: 20px;
+    left: 440px;  
+    display: none; 
+}
+
+
+#stage3_thread2 {
+    position: absolute;
+    top: 140px;
+    left: 920px;  
+    display: none; 
+}
+
+#stage3_box{
+    position: absolute;
+    width : 85px;
+    height: 70px;
+    top: 50px;
+    left: 1049px;  
+    display: none;   
 }

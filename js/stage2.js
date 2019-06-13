@@ -6,6 +6,8 @@ var img;
 
 var num = 1;
 
+var su = 0; // blockValue의 인덱스
+
 var walk_v = 0; // 걷기 값
 var rotate_v = 0; // 회전 값
 
@@ -16,26 +18,28 @@ var now_rotation = 0; // 현재 회전
 var itemFlag = 0; //아이템 사용 유무(아이템 여러게 되면 배열로 쓰면 될 듯)
 
 var distinction = [0,]; // 구별할 수 있는 배열
+var blockValue = [0,]; // 움직임이 담긴 배열
 
 var heartSu = 0;
 
 
 function init() {
-    canvas = document.getElementById("stage2_gameMain");
+    canvas = document.getElementById("stage1_gameMain");
     ctx = canvas.getContext("2d");
 }
 
-// '걷기' 블록 -> 노란색
+// '걷기' 블록
 function walk(){
 
-    distinction[num] = 'walk'; 
-    walk_v += 125; // 10만큼 걷기 (기본값)
+    distinction[num] = 'walk';
+    blockValue[su] = 1;
 
-    document.getElementById("play"+num).style.backgroundColor = "yellow";
+    document.getElementById("play"+num).style.backgroundColor = "#f70044";
     num++;
+    su++;
 }
 
-// '곱하기' 블록 -> 초록색
+// '곱하기' 블록
 function mutiply(){
     let result = prompt( '몇 만큼 곱할까요?', '' );
 
@@ -45,41 +49,51 @@ function mutiply(){
     else if(distinction[num-1] === 'rotate'){
         rotate_v *= result;
     }
+
+    if(blockValue[su-1] == 1) {
+        for(var i=0; i<result-1; i++) {
+            blockValue[su] = 1;
+            su++
+        }
+    } else if(blockValue[su-2] == 2) {
+        for(var i=0; i<=result-1; i++) {
+            blockValue[su] = 2;
+            su++;
+        }
+    }
     
-    document.getElementById("play"+num).style.backgroundColor = "green";
+    document.getElementById("play"+num).style.backgroundColor = "#f5d601";
     num++;
 }
 
 // '회전' 블록 -> 파란색
 function rotation(){
 
-    distinction[num] = 'rotate'; 
-    rotate_v += 90; // 90도 돌기 (기본값)
+    distinction[num] = 'rotate';
+    blockValue[su] = 2;
 
-    document.getElementById("play"+num).style.backgroundColor = "blue";
+    document.getElementById("play"+num).style.backgroundColor = "#12cd86";
     num++;
+    su++;
 }
 
-// '아이템' 블록 -> 보라색
+// '수건깔기' 블록
 function item() {
 
     distinction[num] = 'item';
+    blockValue[su] = 3;
     
-    if(itemFlag == 2){
-        itemFlag = 3;
-    }
-    else {
-        itemFlag = 1;
-    }
 
-    document.getElementById("play"+num).style.backgroundColor = "purple";
+    document.getElementById("play"+num).style.backgroundColor = "#066fa6";
     num++;
+    su++;
 }
 
 // '쓰레기' 블록 -> 흰색
 function trash(){
 
     num--;
+    su--;
 
     // num이 0이 되면 .style을 읽을 때 오류가 나므로 1로 변경한다.
     if(num == 0){
@@ -87,7 +101,10 @@ function trash(){
     }
 
     // 배열을 비워준다.
-    distinction[num] = 0; 
+    distinction[num] = 0;
+
+    blockValue.length = 0;
+    su = -1;
 
     document.getElementById("play"+num).style.backgroundColor = "white";
 }
@@ -95,110 +112,147 @@ function trash(){
 // 플레이 버튼
 function play(){
 
-    let cat = document.getElementById("cat");
-
-    // 누적하기
-    now_rotation += rotate_v;
-
-    // 고양이 움직이기
-    switch((now_rotation/90)%4) {
-        case 1:
-            now_top += walk_v;
-            if(now_top > 540) {
-                alert("범위를 벗어났습니다!");
-                now_top = 495;
-            }
-            cat.style.top = now_top + "px";
-            break;
-        case 2:
-            now_location -= walk_v;
-            if(now_location < 300) {
-                alert("범위를 벗어났습니다!");
-                now_location = 315;
-            }
-            cat.style.left = now_location + "px";
-            break;
-        case 3:
-            now_top -= walk_v;
-            if(now_top < 218) {
-                alert("범위를 벗어났습니다!");
-                now_top = 250;
-            }
-            cat.style.top = now_top + "px";
-            break;
-        case 0:
-            document.getElementById("cat").src="pic/stage/cat/cat1_side.png";
-            now_location += walk_v;
-            if(now_location > 980) {
-                alert("범위를 벗어났습니다!");
-                now_location = 915;
-            }
-            cat.style.left = now_location + "px";
-            break;
+    let j =0;
+ 
+    run = setInterval(function(){
+    if(j==blockValue.length){
+ 
+        for(let i=num; i>0; i--) {
+            trash();
+            su++;
         }
 
-    // 확인용
-    console.log(now_top+"만큼 위에서 있서용");
-    console.log(now_location+"만큼 걷기");
-    console.log(now_rotation+"만큼 회전하기");
-    console.log(itemFlag+"아이템 상태");
+        clearInterval(run);
+ 
+    }else{
     
-    // 수건1 충돌처리
-    if(now_location >= 440 && now_top == 500  && itemFlag == 0){
-        gameover("water");
+        //alert(blockValue[j]);
 
-    }
-    else if( (now_location >= 315 && now_top == 500) && (itemFlag == 1)){
-        document.getElementById("stage1_towel1").style.display="block"; 
-        itemFlag = 2;
-    }
-    else if( (now_location >= 440 && now_top == 375) && (itemFlag == 1)){
-        document.getElementById("stage1_towel1").style.display="block"; 
-        itemFlag = 2;
-    }
+        if(blockValue[j] == 1){ // 걷기일때
+            walk_v += 120; // 10만큼 걷기 (기본값)
+        }
+        else if(blockValue[j] == 2){ // 회전일때
+            rotate_v += 90; // 90도 돌기 (기본값)
+        }
+        else if(blockValue[j] == 3){ // 아이템일때
+            if(itemFlag == 2){
+                itemFlag = 3;
+            }
+            else {
+                itemFlag = 1;
+            }
+        }
 
-    // 쥐 충돌처리
-    if((now_top == 375 && now_location == 565)){
-        gameover("mouse");
-    }
+        document.getElementById("cat").src="pic/stage/cat/cat1_side.png";
 
-    // 맨홀 충돌처리
-    if((now_top == 250 && now_location == 440)){
-        gameover("hall");
-    }
-
-    
-    // 수건2 충돌처리
-    if(now_location == 815 && now_top == 250  && itemFlag == 2){
-        gameover("water");
-    }
-    else if( (now_location == 815 && now_top == 375) && (itemFlag == 3)){
-        document.getElementById("stage1_towel2").style.display="block"; 
-    }
-    else if( (now_location == 690 && now_top == 250) && (itemFlag == 3)){
-        document.getElementById("stage1_towel2").style.display="block"; 
-    }
-
-    
-    // 끌리아
-    if(now_location == 940 && now_top == 250){
-        alert("클리어!");
-        document.getElementById("cat").src="pic/stage/cat/cat1_back.png";
-
-        now_location -= walk_v;
-        now_rotation -= rotate_v;
-    }
+        console.log(blockValue);
 
 
-    cat.style.transform = 'rotate('+now_rotation+'deg)';
-    
-    walk_v -= walk_v;
-    rotate_v -= rotate_v;
+        let cat = document.getElementById("cat");
 
-    for(var i=num; i>0; i--) {
-        trash();
+        // 누적하기
+        now_rotation += rotate_v;
+
+        // 고양이 움직이기
+        switch((now_rotation/90)%4) {
+            case 1:
+                now_top += walk_v;
+                if(now_top > 540) {
+                    alert("범위를 벗어났습니다!");
+                    now_top = 500;
+                }
+                cat.style.top = now_top + "px";
+                break;
+            case 2:
+                now_location -= walk_v;
+                if(now_location < 300) {
+                    alert("범위를 벗어났습니다!");
+                    now_location = 315;
+                }
+                cat.style.left = now_location + "px";
+                break;
+            case 3:
+                now_top -= walk_v;
+                if(now_top < 218) {
+                    alert("범위를 벗어났습니다!");
+                    now_top = 260;
+                }
+                cat.style.top = now_top + "px";
+                break;
+            case 0:
+                
+                now_location += walk_v;
+                if(now_location > 980) {
+                    alert("범위를 벗어났습니다!");
+                    now_location = 915;
+                }
+                cat.style.left = now_location + "px";
+                break;
+            }
+
+        // 확인용
+        console.log(now_top+"만큼 위에서 있서용");
+        console.log(now_location+"만큼 걷기");
+        console.log(now_rotation+"만큼 회전하기");
+        console.log(itemFlag+"아이템 상태");
+        
+        // 수건1 충돌처리
+        if(now_location == 435 && now_top == 500  && itemFlag == 0){
+            gameover("water");
+        }
+        else if( (now_location == 315 && now_top == 500) && (itemFlag == 1)){
+            document.getElementById("stage1_towel1").style.display="block"; 
+            itemFlag = 2;
+        }
+        else if( (now_location >= 435 && now_top == 380) && (itemFlag == 1)){
+            document.getElementById("stage1_towel1").style.display="block"; 
+            itemFlag = 2;
+        }
+
+        // 쥐 충돌처리
+        if((now_top == 380 && now_location == 555)){
+            gameover("mouse");
+        }
+
+        // 맨홀 충돌처리
+        if((now_top == 260 && now_location == 435)){
+            gameover("hall");
+        }
+
+        // 쓰레기통 충돌처리
+        if((now_top == 380 && now_location == 915)){
+            gameover("trash");
+        }
+        
+
+        
+        // 수건2 충돌처리
+        if(now_location == 795 && now_top == 260  && itemFlag == 2){
+            gameover("water");
+        }
+        else if( (now_location == 795 && now_top == 380) && (itemFlag == 3)){
+            document.getElementById("stage1_towel2").style.display="block"; 
+        }
+        else if( (now_location == 675 && now_top == 260) && (itemFlag == 3)){
+            document.getElementById("stage1_towel2").style.display="block"; 
+        }
+
+        
+        // 끌리아
+        if(now_location == 915 && now_top == 260){
+            document.getElementById("r_clearPage").style.visibility = "visible";
+            document.getElementById("r_goBtn").style.visibility = "visible";
+            document.getElementById("r_stopBtn").style.visibility = "visible";
+        }
+
+        cat.style.transform = 'rotate('+now_rotation+'deg)';
+        
+        walk_v -= walk_v;
+        rotate_v -= rotate_v;
+
+        j++;
     }
-
+}, 600);
 
 }
 
@@ -208,8 +262,8 @@ function heart() {
         var hrt = document.getElementById("hrt" + heartSu);
         hrt.style.visibility = "hidden";
     } else {
-        alert("게임이 완전히 오버되었네용");
-        location.reload();
+    document.getElementById("overPage").style.visibility = "visible";
+    document.getElementById("restart").style.visibility = "visible";
     }
 }
 
@@ -235,6 +289,8 @@ function gameover(reason){
 
     itemFlag=0;
 
+    clearInterval(run);
+
 }
 
 function go() {
@@ -246,4 +302,10 @@ function go() {
 
 function stop() {
     location.reload();
+}
+
+function restart() {
+    location.reload();
+    document.getElementById("overPage").style.visibility = "hidden";
+    document.getElementById("restart").style.visibility = "hidden";
 }

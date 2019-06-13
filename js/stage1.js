@@ -55,7 +55,7 @@ function mutiply(){
             blockValue[su] = 1;
             su++
         }
-    } else if(blockValue[su-1] == 2) {
+    } else if(blockValue[su-2] == 2) {
         for(var i=0; i<=result-1; i++) {
             blockValue[su] = 2;
             su++;
@@ -129,7 +129,7 @@ function play(){
         //alert(blockValue[j]);
 
         if(blockValue[j] == 1){ // 걷기일때
-            walk_v += 125; // 10만큼 걷기 (기본값)
+            walk_v += 120; // 10만큼 걷기 (기본값)
         }
         else if(blockValue[j] == 2){ // 회전일때
             rotate_v += 90; // 90도 돌기 (기본값)
@@ -159,7 +159,7 @@ function play(){
                 now_top += walk_v;
                 if(now_top > 540) {
                     alert("범위를 벗어났습니다!");
-                    now_top = 495;
+                    now_top = 500;
                 }
                 cat.style.top = now_top + "px";
                 break;
@@ -175,7 +175,7 @@ function play(){
                 now_top -= walk_v;
                 if(now_top < 218) {
                     alert("범위를 벗어났습니다!");
-                    now_top = 250;
+                    now_top = 260;
                 }
                 cat.style.top = now_top + "px";
                 break;
@@ -197,44 +197,49 @@ function play(){
         console.log(itemFlag+"아이템 상태");
         
         // 수건1 충돌처리
-        if(now_location >= 440 && now_top == 500  && itemFlag == 0){
+        if(now_location == 435 && now_top == 500  && itemFlag == 0){
             gameover("water");
-
         }
-        else if( (now_location >= 315 && now_top == 500) && (itemFlag == 1)){
+        else if( (now_location == 315 && now_top == 500) && (itemFlag == 1)){
             document.getElementById("stage1_towel1").style.display="block"; 
             itemFlag = 2;
         }
-        else if( (now_location >= 440 && now_top == 375) && (itemFlag == 1)){
+        else if( (now_location >= 435 && now_top == 380) && (itemFlag == 1)){
             document.getElementById("stage1_towel1").style.display="block"; 
             itemFlag = 2;
         }
 
         // 쥐 충돌처리
-        if((now_top == 375 && now_location == 565)){
+        if((now_top == 380 && now_location == 555)){
             gameover("mouse");
         }
 
         // 맨홀 충돌처리
-        if((now_top == 250 && now_location == 440)){
+        if((now_top == 260 && now_location == 435)){
             gameover("hall");
         }
 
+        // 쓰레기통 충돌처리
+        if((now_top == 380 && now_location == 915)){
+            gameover("trash");
+        }
+        
+
         
         // 수건2 충돌처리
-        if(now_location == 815 && now_top == 250  && itemFlag == 2){
+        if(now_location == 795 && now_top == 260  && itemFlag == 2){
             gameover("water");
         }
-        else if( (now_location == 815 && now_top == 375) && (itemFlag == 3)){
+        else if( (now_location == 795 && now_top == 380) && (itemFlag == 3)){
             document.getElementById("stage1_towel2").style.display="block"; 
         }
-        else if( (now_location == 690 && now_top == 250) && (itemFlag == 3)){
+        else if( (now_location == 675 && now_top == 260) && (itemFlag == 3)){
             document.getElementById("stage1_towel2").style.display="block"; 
         }
 
         
         // 끌리아
-        if(now_location == 940 && now_top == 250){
+        if(now_location == 915 && now_top == 260){
             document.getElementById("r_clearPage").style.visibility = "visible";
             document.getElementById("r_goBtn").style.visibility = "visible";
             document.getElementById("r_stopBtn").style.visibility = "visible";
@@ -248,8 +253,6 @@ function play(){
         j++;
     }
 }, 600);
-
-    
 
 }
 
@@ -285,6 +288,8 @@ function gameover(reason){
     document.getElementById("stopBtn").style.visibility = "visible";
 
     itemFlag=0;
+
+    clearInterval(run);
 
 }
 
