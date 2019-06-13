@@ -74,6 +74,11 @@ div {
     margin-top:35px;
 }
 
+.block:hover {
+    width : 240px;
+    margin-left: 30px;
+}
+
 #trash{
     position: absolute;
     width: 70px;
