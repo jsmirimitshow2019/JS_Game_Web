@@ -17,7 +17,7 @@ var now_rotation = 0; // 현재 회전
 var itemFlag = 0; //아이템 사용 유무(아이템 여러게 되면 배열로 쓰면 될 듯)
 
 var distinction = [0,]; // 구별할 수 있는 배열
-var blockValue = [0,]; // 움직임이 담긴 배열
+var blockValue = [0, ]; // 움직임이 담긴 배열
 
 var heartSu = 0;
 
@@ -27,19 +27,19 @@ function init() {
     ctx = canvas.getContext("2d");
 }
 
-// '걷기' 블록 -> 노란색
+// '걷기' 블록
 function walk(){
 
     distinction[num] = 'walk';
     blockValue[su] = 1;
     walk_v += 125; // 10만큼 걷기 (기본값)
 
-    document.getElementById("play"+num).style.backgroundColor = "yellow";
+    document.getElementById("play"+num).style.backgroundColor = "#f70044";
     num++;
     su++;
 }
 
-// '곱하기' 블록 -> 초록색
+// '곱하기' 블록
 function mutiply(){
     let result = prompt( '몇 만큼 곱할까요?', '' );
 
@@ -50,19 +50,19 @@ function mutiply(){
         rotate_v *= result;
     }
 
-    if(blockValue[su] == 1) {
-        for(var i=su+1; i<=result; i++) {
-            blockValue[i] = 1;
+    if(blockValue[su-1] == 1) {
+        for(var i=0; i<result-1; i++) {
+            blockValue[su] = 1;
             su++
         }
-    } else if(blockValue[su] == 2) {
-        for(var i=su+1; i<=result; i++) {
-            blockValue[i] = 2;
+    } else if(blockValue[su-1] == 2) {
+        for(var i=0; i<=result-1; i++) {
+            blockValue[su] = 2;
             su++;
         }
     }
     
-    document.getElementById("play"+num).style.backgroundColor = "green";
+    document.getElementById("play"+num).style.backgroundColor = "#f5d601";
     num++;
 }
 
@@ -74,12 +74,12 @@ function rotation(){
     rotate_v += 90; // 90도 돌기 (기본값)
 
 
-    document.getElementById("play"+num).style.backgroundColor = "blue";
+    document.getElementById("play"+num).style.backgroundColor = "#12cd86";
     num++;
     su++;
 }
 
-// '아이템' 블록 -> 보라색
+// '수건깔기' 블록
 function item() {
 
     distinction[num] = 'item';
@@ -92,7 +92,7 @@ function item() {
         itemFlag = 1;
     }
 
-    document.getElementById("play"+num).style.backgroundColor = "purple";
+    document.getElementById("play"+num).style.backgroundColor = "#066fa6";
     num++;
     su++;
 }
@@ -101,7 +101,6 @@ function item() {
 function trash(){
 
     num--;
-    su--;
 
     // num이 0이 되면 .style을 읽을 때 오류가 나므로 1로 변경한다.
     if(num == 0){
@@ -112,12 +111,18 @@ function trash(){
     distinction[num] = 0; 
     blockValue[su] = 0;
 
+    su--;
+
     document.getElementById("play"+num).style.backgroundColor = "white";
 }
 
 // 플레이 버튼
 function play(){
     let cat = document.getElementById("cat");
+
+    for(var i=0; i<su; i++) {
+        console.log(blockValue[i]);
+    }
 
     // 누적하기
     now_rotation += rotate_v;
@@ -160,10 +165,12 @@ function play(){
         }
 
     // 확인용
+    /*
     console.log(now_top+"만큼 위에서 있서용");
     console.log(now_location+"만큼 걷기");
     console.log(now_rotation+"만큼 회전하기");
     console.log(itemFlag+"아이템 상태");
+    */
     
     // 수건1 충돌처리
     if(now_location >= 440 && now_top == 500  && itemFlag == 0){
@@ -208,7 +215,6 @@ function play(){
         location.href="stage_2.html";
     }
 
-
     cat.style.transform = 'rotate('+now_rotation+'deg)';
     
     walk_v -= walk_v;
@@ -216,7 +222,6 @@ function play(){
 
     for(var i=num; i>0; i--) {
         trash();
-        su++;
     }
 
 }
