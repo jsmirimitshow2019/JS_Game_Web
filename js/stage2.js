@@ -160,7 +160,7 @@ function play(){
             thread_flag = 1;
         }
 
-        document.getElementById("cat").src="pic/stage/cat/cat1_side.png";
+        document.getElementById("cat").src="pic/stage/cat/cat2_side.png";
 
         console.log(blockValue);
 
@@ -309,7 +309,7 @@ function gameover(reason){
     now_top = 500;
 
     document.getElementById("stage2_towel1").style.display="none"; 
-    document.getElementById("cat").src="pic/stage/cat/cat1_front.png";
+    document.getElementById("cat").src="pic/stage/cat/cat2_front.png";
 
     // 레이어 팝업
     document.getElementById("gameOver").src = "pic/stage/gameOver/" + reason + ".png";
