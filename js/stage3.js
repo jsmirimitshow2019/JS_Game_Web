@@ -259,6 +259,9 @@ function play(){
         if((now_top == 140 && now_location == 315)){
             gameover("trash");
         }
+        else if(now_top == 140 && now_location == 1155){
+            gameover("trash");
+        }
 
         //아이템을 써서 피할 수 있는 장애물
         //수건1,2 / 실타래1,2 / 박스 충돌처리
