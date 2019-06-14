@@ -22,9 +22,22 @@ var blockValue = [0,]; // 움직임이 담긴 배열
 
 var heartSu = 0;
 
+var towel_flag = 0;
+var towel_istrue = 0;
+
+var thread_flag = 0;
+var thread_istrue = 0;
+
+var box_flag = 0;
+
+var fish = false;
+var see_fish = false;
+
+var one_fish = false;
+var one_fishshop = false;
 
 function init() {
-    canvas = document.getElementById("stage1_gameMain");
+    canvas = document.getElementById("stage3_gameMain");
     ctx = canvas.getContext("2d");
 }
 
@@ -55,8 +68,8 @@ function mutiply(){
             blockValue[su] = 1;
             su++
         }
-    } else if(blockValue[su-2] == 2) {
-        for(var i=0; i<=result-1; i++) {
+    } else if(blockValue[su-1] == 2) {
+        for(var i=0; i<=result-2; i++) {
             blockValue[su] = 2;
             su++;
         }
@@ -78,7 +91,7 @@ function rotation(){
 }
 
 // '수건깔기' 블록
-function item() {
+function towel() {
 
     distinction[num] = 'item';
     blockValue[su] = 3;
@@ -88,6 +101,34 @@ function item() {
     num++;
     su++;
 }
+
+// '실타래' 블록
+function thread() {
+
+    distinction[num] = 'item';
+    blockValue[su] = 4;
+    
+
+    document.getElementById("play"+num).style.backgroundColor = "#b000e3";
+    num++;
+    su++;
+}
+
+
+// '박스' 블록
+function box() {
+
+    distinction[num] = 'item';
+    blockValue[su] = 5;
+    
+
+    document.getElementById("play"+num).style.backgroundColor = "#ff2be9";
+    num++;
+    su++;
+}
+
+
+
 
 // '쓰레기' 블록 -> 흰색
 function trash(){
@@ -115,7 +156,7 @@ function play(){
     let j =0;
  
     run = setInterval(function(){
-    if(j==blockValue.length){
+    if(j>=blockValue.length){
  
         for(let i=num; i>0; i--) {
             trash();
@@ -134,16 +175,17 @@ function play(){
         else if(blockValue[j] == 2){ // 회전일때
             rotate_v += 90; // 90도 돌기 (기본값)
         }
-        else if(blockValue[j] == 3){ // 아이템일때
-            if(itemFlag == 2){
-                itemFlag = 3;
-            }
-            else {
-                itemFlag = 1;
-            }
+        else if(blockValue[j] == 3){ // 수건 놓기 아이템일때
+            towel_flag = 1;
+        }
+        else if(blockValue[j] == 4){ // 실타래 아이템일때
+            thread_flag = 1;
+        }
+        else if(blockValue[j] == 5){ // 박스 아이템일때
+            box_flag = 1;
         }
 
-        document.getElementById("cat").src="pic/stage/cat/cat1_side.png";
+        document.getElementById("cat").src="pic/stage/cat/cat3_side.png";
 
         console.log(blockValue);
 
@@ -157,13 +199,13 @@ function play(){
         switch((now_rotation/90)%4) {
             case 1:
                 now_top += walk_v;
-                if(now_top > 540) {
+                if(now_top > 530) {
                     alert("범위를 벗어났습니다!");
                     now_top = 500;
                 }
                 cat.style.top = now_top + "px";
                 break;
-            case 2:
+            case 2: 
                 now_location -= walk_v;
                 if(now_location < 300) {
                     alert("범위를 벗어났습니다!");
@@ -171,20 +213,19 @@ function play(){
                 }
                 cat.style.left = now_location + "px";
                 break;
-            case 3:
+            case 3: 
                 now_top -= walk_v;
-                if(now_top < 218) {
+                if(now_top < 0) {
                     alert("범위를 벗어났습니다!");
-                    now_top = 260;
+                    now_top = 20;
                 }
                 cat.style.top = now_top + "px";
                 break;
-            case 0:
-                
+            case 0: 
                 now_location += walk_v;
-                if(now_location > 980) {
+                if(now_location > 1280) {
                     alert("범위를 벗어났습니다!");
-                    now_location = 915;
+                    now_location = 1280;
                 }
                 cat.style.left = now_location + "px";
                 break;
@@ -193,57 +234,136 @@ function play(){
         // 확인용
         console.log(now_top+"만큼 위에서 있서용");
         console.log(now_location+"만큼 걷기");
-        console.log(now_rotation+"만큼 회전하기");
-        console.log(itemFlag+"아이템 상태");
+        // console.log(now_rotation+"만큼 회전하기");
+        // console.log(itemFlag+"아이템 상태");
         
-        // 수건1 충돌처리
-        if(now_location == 435 && now_top == 500  && itemFlag == 0){
-            gameover("water");
+ //       피하지 못하는 장애물 (맨홀, 쥐, 쓰레기통) 충돌처리
+        if(now_location == 555 && now_top == 500){
+            gameover("hall");
         }
-        else if( (now_location == 315 && now_top == 500) && (itemFlag == 1)){
-            document.getElementById("stage1_towel1").style.display="block"; 
-            itemFlag = 2;
+        else if(now_location == 915 && now_top == 380){
+            gameover("hall");
         }
-        else if( (now_location >= 435 && now_top == 380) && (itemFlag == 1)){
-            document.getElementById("stage1_towel1").style.display="block"; 
-            itemFlag = 2;
+        
+        if(now_top == 500 && now_location == 1035){
+            gameover("mouse");
         }
-
-        // 쥐 충돌처리
-        if((now_top == 380 && now_location == 555)){
+        else if(now_top == 380 && now_location == 675){
+            gameover("mouse");
+        }
+        else if(now_top == 140 && now_location == 555){
             gameover("mouse");
         }
 
-        // 맨홀 충돌처리
-        if((now_top == 260 && now_location == 435)){
-            gameover("hall");
-        }
 
-        // 쓰레기통 충돌처리
-        if((now_top == 380 && now_location == 915)){
+        if((now_top == 140 && now_location == 315)){
             gameover("trash");
         }
-        
 
-        
-        // 수건2 충돌처리
-        if(now_location == 795 && now_top == 260  && itemFlag == 2){
+        //아이템을 써서 피할 수 있는 장애물
+        //수건1,2 / 실타래1,2 / 박스 충돌처리
+
+
+        if(now_top == 380 && now_location == 315  && towel_flag == 0 && towel_istrue == 0){
             gameover("water");
         }
-        else if( (now_location == 795 && now_top == 380) && (itemFlag == 3)){
-            document.getElementById("stage1_towel2").style.display="block"; 
+        else if( (now_location == 315 && now_top == 500) && (towel_flag == 1)){
+            document.getElementById("stage3_towel1").style.display="block"; 
+            towel_flag = 0;
+            towel_istrue = 1;
         }
-        else if( (now_location == 675 && now_top == 260) && (itemFlag == 3)){
-            document.getElementById("stage1_towel2").style.display="block"; 
+        else if( (now_location == 315 && now_top == 260) && (towel_flag == 1)){
+            document.getElementById("stage3_towel1").style.display="block"; 
+            towel_flag = 0;
+            towel_istrue = 1;
+        }
+        else if( (now_location == 435 && now_top == 380) && (towel_flag == 1)){
+            document.getElementById("stage3_towel1").style.display="block"; 
+            towel_flag = 0;
+            towel_istrue = 1;
         }
 
-        
-        // 끌리아
-        if(now_location == 915 && now_top == 260){
-            document.getElementById("r_clearPage").style.visibility = "visible";
-            document.getElementById("r_goBtn").style.visibility = "visible";
-            document.getElementById("r_stopBtn").style.visibility = "visible";
+
+        if(now_top == 260 && now_location == 795  && towel_flag == 0){
+            gameover("water");
         }
+        else if( (now_location == 675 && now_top == 260) && (towel_flag == 1)){
+            document.getElementById("stage3_towel2").style.display="block"; 
+        }
+        else if( (now_location == 795 && now_top == 140) && (towel_flag == 1)){
+            document.getElementById("stage3_towel2").style.display="block"; 
+        }
+        else if( (now_location == 915 && now_top == 260) && (towel_flag == 1)){
+            document.getElementById("stage3_towel2").style.display="block"; 
+        }
+
+
+        if(now_top == 20 && now_location == 435  && thread_flag == 0 && thread_istrue == 0){
+            gameover("thread");
+        }
+        else if( (now_top == 20 && now_location == 555) && (thread_flag == 1)){
+            document.getElementById("stage3_thread1").style.display="block"; 
+            thread_flag = 0;
+            thread_istrue = 1;
+        }
+        else if( (now_top == 140 && now_location == 435) && (thread_flag == 1)){
+            document.getElementById("stage3_thread1").style.display="block"; 
+            thread_flag = 0;
+            thread_istrue = 1;
+        }
+
+        if(now_top == 140 && now_location == 915  && thread_flag == 0){
+            gameover("thread");
+        }
+        else if( (now_top == 260 && now_location == 915) && (thread_flag == 1)){
+            document.getElementById("stage3_thread2").style.display="block"; 
+        }
+        else if( (now_top == 140 && now_location == 1035) && (thread_flag == 1)){
+            document.getElementById("stage3_thread2").style.display="block"; 
+        }
+        else if( (now_top == 140 && now_location == 795) && (thread_flag == 1)){
+            document.getElementById("stage3_thread2").style.display="block"; 
+        }
+
+
+        if(now_top == 20 && now_location == 1035  && box_flag == 0){
+            gameover("box");
+        }
+        else if( (now_top == 140 && now_location == 1035) && (box_flag == 1)){
+            document.getElementById("stage3_box").style.display="block"; 
+        }
+        else if( (now_top == 20 && now_location == 915) && (box_flag == 1)){
+            document.getElementById("stage3_box").style.display="block"; 
+        }
+
+        //클리어
+        if(now_location == 1155 && now_top == 20 && fish==true) {
+            window.location.href = 'clear.html';
+        }
+        else if(now_location == 1155 && now_top == 20 && fish==false){
+            document.getElementById("event_nogofishshop").style.display="block"; 
+        }
+
+        //생선가게
+        if(now_location == 315 && now_top == 20 && one_fishshop==false) {
+            document.getElementById("event_arrivefishshop").style.display="block"; 
+
+            document.getElementById("fish").style.display="block"; 
+            see_fish = true;
+            one_fishshop = true;
+
+        }
+
+        //생선찾기
+        if(now_location == 675 && now_top == 550 && see_fish == true && one_fish==false) {
+            document.getElementById("event_findfish").style.display="block"; 
+
+            document.getElementById("fish").style.display="none"; 
+            fish = true;
+            one_fish = true;
+
+        }
+        
 
         cat.style.transform = 'rotate('+now_rotation+'deg)';
         
@@ -268,7 +388,7 @@ function heart() {
 }
 
 function gameover(reason){
-    
+
     cat.style.left = '315px';
     cat.style.transform = 'rotate(0 deg)';
     cat.style.top = '500px';
@@ -277,9 +397,9 @@ function gameover(reason){
     now_rotation = 0;
     now_top = 500;
 
-    document.getElementById("stage1_towel1").style.display="none"; 
-    document.getElementById("stage1_towel2").style.display="none"; 
-    document.getElementById("cat").src="pic/stage/cat/cat1_front.png";
+    document.getElementById("stage3_towel1").style.display="none"; 
+    document.getElementById("stage3_towel2").style.display="none"; 
+    document.getElementById("cat").src="pic/stage/cat/cat3_front.png";
 
     // 레이어 팝업
     document.getElementById("gameOver").src = "pic/stage/gameOver/" + reason + ".png";
@@ -290,6 +410,8 @@ function gameover(reason){
     itemFlag=0;
 
     clearInterval(run);
+
+    trash();
 
 }
 
@@ -309,3 +431,5 @@ function restart() {
     document.getElementById("overPage").style.visibility = "hidden";
     document.getElementById("restart").style.visibility = "hidden";
 }
+
+

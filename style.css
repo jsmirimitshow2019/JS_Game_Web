@@ -354,14 +354,15 @@ div {
     position: absolute;
     top: 340px;
     left: 315px;   
-    display: none;   
+    display: none;
+    z-index: 10;   
 }
 
 #fish{
     position: absolute;
     width : 90px;
     height: 90px;
-    top: 145px;
+    top: 500px;
     left: 685px;   
     display: none;     
 }

@@ -157,7 +157,7 @@ function play(){
         switch((now_rotation/90)%4) {
             case 1:
                 now_top += walk_v;
-                if(now_top > 540) {
+                if(now_top > 510) {
                     alert("범위를 벗어났습니다!");
                     now_top = 500;
                 }
@@ -165,7 +165,7 @@ function play(){
                 break;
             case 2:
                 now_location -= walk_v;
-                if(now_location < 300) {
+                if(now_location < 310) {
                     alert("범위를 벗어났습니다!");
                     now_location = 315;
                 }

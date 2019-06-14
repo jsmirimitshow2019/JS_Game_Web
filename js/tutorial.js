@@ -24,6 +24,9 @@ var heartSu = 0;
 
 var fish = false;
 
+var one_fishshop = false;
+var one_fish = false;
+
 
 function init() {
     canvas = document.getElementById("tutorial_gameMain");
