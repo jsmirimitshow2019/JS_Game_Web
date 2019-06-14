@@ -156,18 +156,36 @@ div {
 
 #yesbtn{
     position: absolute;  
-    top : 450px;
-    left: 350px;   
+    top : 430px;
+    left: 370px;   
+    z-index: 6;
+}
+
+#yesbtn:hover{
+    position: absolute;  
+    top : 425px;
+    left: 365px;  
+    width: 200px; 
     z-index: 6;
 }
 
 
 #nobtn{
     position: absolute;  
-    top : 450px;
-    left: 700px;   
+    top : 430px;
+    left: 680px;   
     z-index: 6;
 }
+
+#nobtn:hover{
+    position: absolute;  
+    top : 425px;
+    left: 675px;  
+    width: 200px;  
+    z-index: 6;
+}
+
+
 
 .tu_event{
     position: absolute;
