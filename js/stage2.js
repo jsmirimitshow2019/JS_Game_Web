@@ -17,6 +17,7 @@ var now_rotation = 0; // 현재 회전
 
  //아이템 사용 유무(아이템 여러게 되면 배열로 쓰면 될 듯)
 var towel_flag = 0;
+var thread_flag = 0;
 
 var fish = false;
 var see_fish = false;
@@ -224,8 +225,17 @@ function play(){
         if(now_top == 260 && now_location == 795  && towel_flag == 0){
             gameover("water");
         }
-        else if( (now_location == 795 && now_top == 260) && (towel_flag == 1)){
+        else if( (now_location == 795 && now_top == 380) && (towel_flag == 1)){
             document.getElementById("stage2_towel1").style.display="block"; 
+            towel_flag = 2;
+        }
+        else if( (now_location == 795 && now_top == 140) && (towel_flag == 1)){
+            document.getElementById("stage2_towel1").style.display="block"; 
+            towel_flag = 2;
+        }
+        else if( (now_location == 915 && now_top == 260) && (towel_flag == 1)){
+            document.getElementById("stage2_towel1").style.display="block"; 
+            towel_flag = 2;
         }
 
         // 맨홀 충돌 처리
@@ -245,8 +255,13 @@ function play(){
         if(now_top == 140 && now_location == 915 && thread_flag == 0) {
             gameover("thread");
         }
-        else if(now_top == 140 && now_location == 915 && thread_flag == 1) {
+        else if(now_location == 795 && now_top == 140 && thread_flag == 1) {
             document.getElementById("stage2_thread1").style.display="block"; 
+            thread_flag = 2;
+        }
+        else if(now_location == 915 && now_top == 260 && thread_flag == 1) {
+            document.getElementById("stage2_thread1").style.display="block"; 
+            thread_flag = 2;
         }
 
         // 끌리아
