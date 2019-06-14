@@ -298,6 +298,13 @@ function go() {
     document.getElementById("gameOver").style.visibility = "hidden";
     document.getElementById("goBtn").style.visibility = "hidden";
     document.getElementById("stopBtn").style.visibility = "hidden";
+
+    for(let i=num; i>0; i--) {
+        trash();
+        su++;
+    }
+
+    
 }
 
 function stop() {

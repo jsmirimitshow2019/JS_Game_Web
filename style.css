@@ -385,3 +385,27 @@ div {
     display: none;     
 }
 
+
+#stage2_towel1 {
+    position: absolute;
+    top: 320px;
+    left: 800px;
+    display: none;
+}
+
+#stage2_thread1 {
+    position: absolute;
+    top: 140px;
+    left: 915px;
+    display: none;
+}
+
+
+#stage2_fish{
+    position: absolute;
+    width : 90px;
+    height: 90px;
+    top: 380px;
+    left: 1045px;
+    display: none;
+}

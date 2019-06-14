@@ -30,10 +30,17 @@
                 <img src="pic/stage/block/block_walk.png" class="block one" onclick="walk()">
                 <img src="pic/stage/block/block_multiple.png" class="block two" onclick="mutiply()">
                 <img src="pic/stage/block/block_rotate.png" class="block three" onclick="rotation()">
-                <img src="pic/stage/block/block_towel.png" class="block four" onclick="item()">
-                <img src="pic/stage/block/block_thread.png" class="block five" onclick="item()">
+                <img src="pic/stage/block/block_towel.png" class="block four" onclick="towel()">
+                <img src="pic/stage/block/block_thread.png" class="block five" onclick="thread()">
         </div>
         
+        <img src="pic/stage/gameClear/roundclear.png" id="r_clearPage">
+        <img src="pic/stage/gameClear/go.png" id="r_goBtn" onclick="location.href='stage_3.html'">
+        <img src="pic/stage/gameClear/stop.png" id="r_stopBtn" onclick="location.href='index.html'">
+
+        <img src="pic/stage/gameOver/gameover.png" id="overPage">
+        <img src="pic/stage/gameOver/restart.png" id="restart" onclick="restart()">
+
         <div id="layerPopup">
             <img src="pic/stage/gameOver/go.png" id="goBtn" onclick="go()">
             <img src="pic/stage/gameOver/stop.png" id="stopBtn" onclick="stop()">
@@ -62,10 +69,15 @@
         <img src="pic/stage/block/trash.PNG" id="trash" onclick="trash()">
         <img src="pic/stage/block/play.PNG" id="play" onclick="play()">
 
-        <img src="pic/stage/item/stage1_towel1.png" id="stage1_towel1">
-        <img src="pic/stage/item/stage1_towel2.png" id="stage1_towel2">
+        <img src="pic/stage/item/stage1_towel1.png" id="stage2_towel1">
+        <img src="pic/stage/item/remove_thread.png" id="stage2_thread1">
 
-        <img src="pic/stage/event/event_nogofishshop.png" id="event_nogofishshop">
+        <img src="pic/stage/item/fish.png" id="stage2_fish">
+
+        <img onclick="javascript:document.getElementById('event_lostfish').style.display='none'; " src="pic/stage/event/event_lostfish.png" class="event" id="event_lostfish">
+        <img onclick="javascript:document.getElementById('event_nogofishshop').style.display='none'; " src="pic/stage/event/event_nogofishshop.png" class="event" id="event_nogofishshop">
+        <img onclick="javascript:document.getElementById('event_arrivefishshop').style.display='none'; document.getElementById('event_lostfish').style.display='block'; " src="pic/stage/event/event_arrivefishshop.png" class="event" id="event_arrivefishshop">
+        <img onclick="javascript:document.getElementById('event_findfish').style.display='none'; " src="pic/stage/event/event_findfish.png" class="event" id="event_findfish">
 
     </div>
     
