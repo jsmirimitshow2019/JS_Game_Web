@@ -22,6 +22,8 @@ var blockValue = [0,]; // 움직임이 담긴 배열
 
 var heartSu = 0;
 
+var count = 0;
+
 
 function init() {
     canvas = document.getElementById("stage1_gameMain");
@@ -56,7 +58,7 @@ function mutiply(){
             su++
         }
     } else if(blockValue[su-1] == 2) {
-        for(var i=0; i<=result-3; i++) {
+        for(var i=0; i<=result-2; i++) {
             blockValue[su] = 2;
             su++;
         }
@@ -112,6 +114,7 @@ function trash(){
 // 플레이 버튼
 function play(){
 
+    count ++;
     let j =0;
  
     run = setInterval(function(){
@@ -315,4 +318,8 @@ function restart() {
     location.reload();
     document.getElementById("overPage").style.visibility = "hidden";
     document.getElementById("restart").style.visibility = "hidden";
+}
+
+function gogo(){
+    location.href='stage_2.html?value='+count;
 }

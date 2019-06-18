@@ -36,11 +36,24 @@ var see_fish = false;
 var one_fish = false;
 var one_fishshop = false;
 
+var value;
+
 function init() {
+
+    value  = getParameterByName('value');
+    history.replaceState({}, null, location.pathname);
+
+
     canvas = document.getElementById("stage3_gameMain");
     ctx = canvas.getContext("2d");
 }
 
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
 // '걷기' 블록
 function walk(){
 
@@ -69,7 +82,7 @@ function mutiply(){
             su++
         }
     } else if(blockValue[su-1] == 2) {
-        for(var i=0; i<=result-3; i++) {
+        for(var i=0; i<=result-2; i++) {
             blockValue[su] = 2;
             su++;
         }
@@ -152,6 +165,8 @@ function trash(){
 
 // 플레이 버튼
 function play(){
+
+    value++;
 
     let j =0;
  
@@ -341,7 +356,7 @@ function play(){
 
         //클리어
         if(now_location == 1155 && now_top == 20 && fish==true) {
-            window.location.href = 'clear.html';
+            location.href='clear.html?value='+value;
         }
         else if(now_location == 1155 && now_top == 20 && fish==false){
             document.getElementById("event_nogofishshop").style.display="block"; 

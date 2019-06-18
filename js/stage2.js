@@ -30,10 +30,24 @@ var heartSu = 0;
 var one_fish = false;
 var one_fishshop = false;
 
+var value;
+
 
 function init() {
+
+    value  = getParameterByName('value');
+    history.replaceState({}, null, location.pathname);
+
+
     canvas = document.getElementById("stage2_gameMain");
     ctx = canvas.getContext("2d");
+}
+
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
 // '걷기' 블록
@@ -64,7 +78,7 @@ function mutiply(){
             su++;
         }
     } else if(blockValue[su-1] == 2) {
-        for(var i=0; i<=result-3; i++) {
+        for(var i=0; i<=result-2; i++) {
             blockValue[su] = 2;
             su++;
         }
@@ -140,6 +154,8 @@ function garbage() {
 
 // 플레이 버튼
 function play(){
+
+    value++;
 
     let j =0;
  
@@ -364,4 +380,8 @@ function restart() {
     location.reload();
     document.getElementById("overPage").style.visibility = "hidden";
     document.getElementById("restart").style.visibility = "hidden";
+}
+
+function gogo(){
+    location.href='stage_3.html?value='+count;
 }
