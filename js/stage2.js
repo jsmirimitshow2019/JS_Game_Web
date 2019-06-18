@@ -63,8 +63,8 @@ function mutiply(){
             blockValue[su] = 1;
             su++
         }
-    } else if(blockValue[su-2] == 2) {
-        for(var i=0; i<=result-1; i++) {
+    } else if(blockValue[su-1] == 2) {
+        for(var i=0; i<=result-3; i++) {
             blockValue[su] = 2;
             su++;
         }

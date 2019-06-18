@@ -69,7 +69,7 @@ function mutiply(){
             su++
         }
     } else if(blockValue[su-1] == 2) {
-        for(var i=0; i<=result-2; i++) {
+        for(var i=0; i<=result-3; i++) {
             blockValue[su] = 2;
             su++;
         }
@@ -358,7 +358,7 @@ function play(){
         }
 
         //생선찾기
-        if(now_location == 675 && now_top == 550 && see_fish == true && one_fish==false) {
+        if(now_location == 675 && now_top == 500 && see_fish == true && one_fish==false) {
             document.getElementById("event_findfish").style.display="block"; 
 
             document.getElementById("fish").style.display="none"; 
