@@ -61,7 +61,7 @@ function mutiply(){
     if(blockValue[su-1] == 1) {
         for(var i=0; i<result-1; i++) {
             blockValue[su] = 1;
-            su++
+            su++;
         }
     } else if(blockValue[su-1] == 2) {
         for(var i=0; i<=result-3; i++) {
@@ -87,10 +87,8 @@ function rotation(){
 
 // '수건깔기' 블록
 function towel() {
-
     distinction[num] = 'item';
     blockValue[su] = 3;
-    towel_flag = 1;
 
     document.getElementById("play"+num).style.backgroundColor = "#066fa6";
     num++;
@@ -111,7 +109,6 @@ function thread() {
 
 // '쓰레기' 블록 -> 흰색
 function trash(){
-
     num--;
     su--;
 
@@ -122,7 +119,19 @@ function trash(){
 
     // 배열을 비워준다.
     distinction[num] = 0;
+    blockValue[su] = 0;
 
+    document.getElementById("play"+num).style.backgroundColor = "white";
+}
+
+function garbage() {
+    num--;
+
+    if(num == 0){
+        num = 1;
+    }
+
+    distinction[num] = 0;
     blockValue.length = 0;
     su = -1;
 
@@ -138,7 +147,7 @@ function play(){
     if(j==blockValue.length){
  
         for(let i=num; i>0; i--) {
-            trash();
+            garbage();
             su++;
         }
 
@@ -176,24 +185,21 @@ function play(){
             case 1:
                 now_top += walk_v;
                 if(now_top > 510) {
-                    alert("범위를 벗어났습니다!");
-                    now_top = 500;
+                    gameover("wall")
                 }
                 cat.style.top = now_top + "px";
                 break;
             case 2:
                 now_location -= walk_v;
                 if(now_location < 310) {
-                    alert("범위를 벗어났습니다!");
-                    now_location = 315;
+                    gameover("wall")
                 }
                 cat.style.left = now_location + "px";
                 break;
             case 3:
                 now_top -= walk_v;
                 if(now_top < 128) {
-                    alert("범위를 벗어났습니다!");
-                    now_top = 140;
+                    gameover("wall")
                 }
                 cat.style.top = now_top + "px";
                 break;
@@ -201,8 +207,7 @@ function play(){
                 
                 now_location += walk_v;
                 if(now_location > 1050) {
-                    alert("범위를 벗어났습니다!");
-                    now_location = 1038;
+                    gameover("wall")
                 }
                 cat.style.left = now_location + "px";
                 break;
@@ -275,7 +280,7 @@ function play(){
         }
 
         // 생선가게
-        if(now_location == 675 && now_top == 260 && one_fishshop==fasle) {
+        if(now_location == 675 && now_top == 260 && one_fishshop==false) {
             document.getElementById("event_arrivefishshop").style.display="block"; 
             document.getElementById("stage2_fish").style.display="block"; 
             see_fish = true;
