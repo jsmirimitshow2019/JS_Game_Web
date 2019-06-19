@@ -215,32 +215,28 @@ function play(){
             case 1:
                 now_top += walk_v;
                 if(now_top > 530) {
-                    alert("범위를 벗어났습니다!");
-                    now_top = 500;
+                    gameover("wall");
                 }
                 cat.style.top = now_top + "px";
                 break;
             case 2: 
                 now_location -= walk_v;
                 if(now_location < 300) {
-                    alert("범위를 벗어났습니다!");
-                    now_location = 315;
+                    gameover("wall");
                 }
                 cat.style.left = now_location + "px";
                 break;
             case 3: 
                 now_top -= walk_v;
                 if(now_top < 0) {
-                    alert("범위를 벗어났습니다!");
-                    now_top = 20;
+                    gameover("wall");
                 }
                 cat.style.top = now_top + "px";
                 break;
             case 0: 
                 now_location += walk_v;
                 if(now_location > 1280) {
-                    alert("범위를 벗어났습니다!");
-                    now_location = 1280;
+                    gameover("wall");
                 }
                 cat.style.left = now_location + "px";
                 break;

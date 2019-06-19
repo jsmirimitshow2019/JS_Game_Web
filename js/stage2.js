@@ -32,12 +32,10 @@ var one_fishshop = false;
 
 var value;
 
-
 function init() {
 
     value  = getParameterByName('value');
     history.replaceState({}, null, location.pathname);
-
 
     canvas = document.getElementById("stage2_gameMain");
     ctx = canvas.getContext("2d");
@@ -243,7 +241,7 @@ function play(){
         }
 
         // 물 웅덩이 충돌 처리
-        if(now_top == 260 && now_location == 795  && towel_flag == 0){
+        if(now_top == 260 && now_location == 675  && towel_flag == 0){
             gameover("water");
         }
         else if( (now_location == 795 && now_top == 380) && (towel_flag == 1)){
@@ -292,12 +290,12 @@ function play(){
             document.getElementById("r_stopBtn").style.visibility = "visible";
         }
         else if(now_location == 1035 && now_top == 140 && fish == false) {
-            document.getElementById("event_nogofishshop").style.display="block";
+            document.getElementById("event_nogofishshop2").style.display="block";
         }
 
         // 생선가게
         if(now_location == 675 && now_top == 260 && one_fishshop==false) {
-            document.getElementById("event_arrivefishshop").style.display="block"; 
+            document.getElementById("event_arrivefishshop2").style.display="block"; 
             document.getElementById("stage2_fish").style.display="block"; 
             see_fish = true;
             one_fishshop = true;
@@ -336,6 +334,12 @@ function heart() {
 
 function gameover(reason){
     
+    
+    for(let i=num; i>0; i--) {
+        garbage();
+        su++;
+    }
+
     cat.style.left = '315px';
     cat.style.transform = 'rotate(0 deg)';
     cat.style.top = '500px';
@@ -383,5 +387,5 @@ function restart() {
 }
 
 function gogo(){
-    location.href='stage_3.html?value='+count;
+    location.href='stage_3.html?value='+value;
 }
