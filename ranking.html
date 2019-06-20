@@ -29,7 +29,20 @@
    width: 300px;
    height: 490px;
    margin-top: 300px;
-   margin-left: 460px;
+   margin-left: 90px;
+   z-index: 100;
+   text-align: center;
+   font-size: 30px;
+   line-height: 1.6;
+   
+  }
+
+  #num {
+   float: left;
+   width: 300px;
+   height: 490px;
+   margin-top: 300px;
+   margin-left: 60px;
    z-index: 100;
    text-align: center;
    font-size: 30px;
@@ -39,6 +52,7 @@
  </style>
 </head>
 <body>
+    <div id="num"></div>
  <div id="name"></div>
  <div id="value"></div>
 
@@ -52,8 +66,12 @@
   var localValue = [];
 
   function init() {
-      
+
    index = localStorage.getItem("index");
+
+   if(index>=11){
+       index = 10;
+   }
 
    for(let i=0; i<=index; i++) {
 
@@ -74,6 +92,7 @@
 
    // 화면에 표시
    for(let j=0; j<=index; j++){
+        document.getElementById("num").innerHTML += (j+1) + "<br>";
         document.getElementById("name").innerHTML += localName[j] + "<br>";
         document.getElementById("value").innerHTML += localValue[j] + "<br>";
    }
