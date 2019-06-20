@@ -334,5 +334,6 @@ function restart() {
 }
 
 function gogo(){
-    location.href='stage_2.html?value='+count;
+    location.href='stage_2.html?asd6gv4ad6g65dfh1s='+count;
 }
+

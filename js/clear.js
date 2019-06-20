@@ -6,7 +6,7 @@ var index = -1;
 
 
 function init() {
-    value  = getParameterByName('value');
+    value  = getParameterByName('asd6gv4ad6g65dfh1s');
     history.replaceState({}, null, location.pathname);
 
     var userName = prompt('당신의 총점은 ' + value + '점 입니다', '이름을 입력해주세요');

@@ -34,7 +34,7 @@ var value;
 
 function init() {
 
-    value  = getParameterByName('value');
+    value  = getParameterByName('asd6gv4ad6g65dfh1s');
     history.replaceState({}, null, location.pathname);
 
     canvas = document.getElementById("stage2_gameMain");
@@ -387,5 +387,5 @@ function restart() {
 }
 
 function gogo(){
-    location.href='stage_3.html?value='+value;
+    location.href='stage_3.html?asd6gv4ad6g65dfh1s='+value;
 }

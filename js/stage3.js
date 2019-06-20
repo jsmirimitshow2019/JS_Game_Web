@@ -40,7 +40,7 @@ var value;
 
 function init() {
 
-    value  = getParameterByName('value');
+    value  = getParameterByName('asd6gv4ad6g65dfh1s');
     history.replaceState({}, null, location.pathname);
 
 
@@ -363,7 +363,7 @@ function play(){
 
         //클리어
         if(now_location == 1155 && now_top == 20 && fish==true) {
-            location.href='clear.html?value='+value;
+            location.href='clear.html?asd6gv4ad6g65dfh1s='+value;
         }
         else if(now_location == 1155 && now_top == 20 && fish==false){
             document.getElementById("event_nogofishshop").style.display="block"; 
