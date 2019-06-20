@@ -79,6 +79,7 @@ div {
 .block:hover {
     width : 240px;
     margin-left: 30px;
+    cursor: pointer;
 }
 
 #trash{
@@ -95,6 +96,7 @@ div {
     height: 60px;
     top : 710px;
     left : 1195px;
+    cursor: pointer;
 }
 
 #play{
@@ -112,6 +114,7 @@ div {
     height: 70px;
     left : 1190px;
     top : 630px;
+    cursor: pointer;
 }
 
 
@@ -167,6 +170,7 @@ div {
     left: 365px;  
     width: 200px; 
     z-index: 6;
+    cursor: pointer;
 }
 
 
@@ -183,6 +187,7 @@ div {
     left: 675px;  
     width: 200px;  
     z-index: 6;
+    cursor: pointer;
 }
 
 
@@ -262,6 +267,9 @@ div {
     top: 290px;
     left: 320px;
 }
+#goBtn:hover, #stopBtn:hover {
+    cursor: pointer;
+}
 
 #gameOver {
     position: absolute;
@@ -325,6 +333,9 @@ div {
     top: 660px;
     left: 710px;
     visibility: hidden;
+}
+#r_goBtn:hover, #r_stopBtn:hover {
+    cursor: pointer;
 }
 
 /*스테이지3*/

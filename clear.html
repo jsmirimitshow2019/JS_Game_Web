@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>게임 클리어</title>
+    <title>Game Clear!</title>
 
     <style>
         #clear{
@@ -13,12 +13,20 @@
             margin-bottom: auto;
             background-image: url(pic/stage/background/ending_back.jpg);
         }
+        #rankBtn {
+            position: absolute;
+            top: 260px;
+            left: 550px;
+        }
+        #rankBtn:hover {
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
+    <img src="pic/stage/gameClear/rank.png" id="rankBtn" onclick="location.href='ranking.html'">
     <div id="clear">
     </div>
-
     <script type="text/javascript" src="js/clear.js"></script>
 </body>
 </html>

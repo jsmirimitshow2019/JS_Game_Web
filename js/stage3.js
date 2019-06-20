@@ -145,7 +145,6 @@ function box() {
 
 // '쓰레기' 블록 -> 흰색
 function trash(){
-
     num--;
     su--;
 
@@ -156,7 +155,19 @@ function trash(){
 
     // 배열을 비워준다.
     distinction[num] = 0;
+    blockValue[su] = 0;
 
+    document.getElementById("play"+num).style.backgroundColor = "white";
+}
+
+function garbage() {
+    num--;
+
+    if(num == 0){
+        num = 1;
+    }
+
+    distinction[num] = 0;
     blockValue.length = 0;
     su = -1;
 
@@ -174,7 +185,7 @@ function play(){
     if(j>=blockValue.length){
  
         for(let i=num; i>0; i--) {
-            trash();
+            garbage();
             su++;
         }
 
@@ -403,6 +414,11 @@ function heart() {
 
 function gameover(reason){
 
+    for(let i=num; i>0; i--) {
+        garbage();
+        su++;
+    }
+
     cat.style.left = '315px';
     cat.style.transform = 'rotate(0 deg)';
     cat.style.top = '500px';
@@ -424,8 +440,6 @@ function gameover(reason){
     itemFlag=0;
 
     clearInterval(run);
-
-    trash();
 
 }
 

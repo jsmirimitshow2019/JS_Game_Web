@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <title>Ranking</title>
+ <style>
+  #ranking {
+   width: 1280px;
+   height: 800px;
+   background-color: #212E36;
+   margin-top: auto;
+   margin-bottom: auto;
+   background-image: url(pic/stage/background/rank_back.jpg);
+   z-index: 1;
+  }
+  #value {
+   border: 1px solid blue;
+   float: left;
+   width: 300px;
+   height: 490px;
+   margin-top: 300px;
+   margin-left: 150px;
+   z-index: 100;
+  }
+  #name {
+   border: 1px solid blue;
+   float: left;
+   width: 300px;
+   height: 490px;
+   margin-top: 300px;
+   margin-left: 460px;
+   z-index: 100;
+  }
+ </style>
+</head>
+<body>
+ <div id="name"></div>
+ <div id="value"></div>
+
+ <div id="ranking">
+ </div>
+
+ <script>
+  window.onload = init;
+
+  var localName = [];
+  var localValue = [];
+
+  function init() {
+
+   // 정렬시키기
+
+   index = localStorage.getItem("index");
+   for(var i=0; i<index; i++) {
+    localName[i] = localStorage.getItem("localName["+i+"]");
+    localValue[i] = localStorage.getItem("localValue["+i+"]");
+
+    document.getElementById("name").innerHTML += localName[i] + "<br>";
+    document.getElementById("value").innerHTML += localValue[i] + "<br>";
+
+    console.log(i + " in ranking name: " + localName[i]);
+    console.log(i + " in ranking value: " + localValue[i]);
+   }
+  }
+
+ </script>
+</body>
+</html>
