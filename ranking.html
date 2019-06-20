@@ -79,12 +79,13 @@
     localValue[i] = localStorage.getItem("localValue["+i+"]");
 
     // NULL 처리
-    if(localName[i] == null){
+    if(localName[i] == 'null'){
         localName[i] = "익명의 고양이";
     }
 
     console.log(i + " in ranking name: " + localName[i]);
     console.log(i + " in ranking value: " + localValue[i]);
+
    }
 
     // 정렬시키기
