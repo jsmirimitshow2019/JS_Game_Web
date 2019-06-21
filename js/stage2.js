@@ -241,7 +241,7 @@ function play(){
         }
 
         // 물 웅덩이 충돌 처리
-        if(now_top == 260 && now_location == 675  && towel_flag == 0){
+        if(now_top == 260 && now_location == 795  && towel_flag == 0){
             gameover("water");
         }
         else if( (now_location == 795 && now_top == 380) && (towel_flag == 1)){
