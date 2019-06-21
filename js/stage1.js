@@ -16,6 +16,7 @@ var now_top = 500;
 var now_rotation = 0; // 현재 회전
 
 var itemFlag = 0; //아이템 사용 유무(아이템 여러게 되면 배열로 쓰면 될 듯)
+var itemFlag2 = 0; //아이템 사용 유무(아이템 여러게 되면 배열로 쓰면 될 듯)
 
 var distinction = [0,]; // 구별할 수 있는 배열
 var blockValue = [0,]; // 움직임이 담긴 배열
@@ -151,7 +152,7 @@ function play(){
         }
         else if(blockValue[j] == 3){ // 아이템일때
             if(itemFlag == 2){
-                itemFlag = 3;
+                itemFlag2 = 1;
             }
             else {
                 itemFlag = 1;
@@ -238,13 +239,13 @@ function play(){
 
         
         // 수건2 충돌처리
-        if(now_location == 795 && now_top == 260  && itemFlag == 2){
+        if(now_location == 795 && now_top == 260  && itemFlag2 == 0){
             gameover("water");
         }
-        else if( (now_location == 795 && now_top == 380) && (itemFlag == 3)){
+        else if( (now_location == 795 && now_top == 380) && (itemFlag2 == 1)){
             document.getElementById("stage1_towel2").style.display="block"; 
         }
-        else if( (now_location == 675 && now_top == 260) && (itemFlag == 3)){
+        else if( (now_location == 675 && now_top == 260) && (itemFlag2 == 1)){
             document.getElementById("stage1_towel2").style.display="block"; 
         }
 
