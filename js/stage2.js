@@ -244,6 +244,10 @@ function play(){
         if(now_top == 260 && now_location == 795  && towel_flag == 0){
             gameover("water");
         }
+        else if( (now_location == 675 && now_top == 260) && (towel_flag == 1) ) {
+            document.getElementById("stage2_towel1").style.display="block"; 
+            towel_flag = 2;
+        }
         else if( (now_location == 795 && now_top == 380) && (towel_flag == 1)){
             document.getElementById("stage2_towel1").style.display="block"; 
             towel_flag = 2;
